@@ -38,7 +38,7 @@ class AddResidenceSecondPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
                 children: [
@@ -105,9 +105,12 @@ class AddResidenceSecondPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              CustomDropdown(
-                  controller: controller.governorateController,
-                  hintText: "Select Governorate"),
+              SizedBox(
+                width: 320,
+                child: CustomDropdown(
+                    controller: controller.governorateController,
+                    hintText: "Select Governorate"),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -121,61 +124,70 @@ class AddResidenceSecondPage extends StatelessWidget {
                       areas.isNotEmpty ? areas.first : "";
                 }
 
-                return CustomDropdown(
-                    controller: controller.areaController,
-                    hintText: "Select Area");
+                return SizedBox(
+                  width: 320,
+                  child: CustomDropdown(
+                      controller: controller.areaController,
+                      hintText: "Select Area"),
+                );
               }),
               commonTextfieldWithTitle(
                 "",
                 controller.houseController,
                 hintText: "Building Number/No.",
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: commonTextfieldWithTitle(
-                      "",
-                      controller.apartmentController,
-                      hintText: "Apartment No.",
+              SizedBox(
+                width: 320,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: commonTextfieldWithTitle(
+                        "",
+                        controller.apartmentController,
+                        hintText: "Apartment No.",
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: commonTextfieldWithTitle(
-                      "",
-                      controller.floorController,
-                      hintText: "Floor",
+                    const SizedBox(
+                      width: 8,
                     ),
-                  )
-                ],
+                    Expanded(
+                      child: commonTextfieldWithTitle(
+                        "",
+                        controller.floorController,
+                        hintText: "Floor",
+                      ),
+                    )
+                  ],
+                ),
               ),
               commonTextfieldWithTitle(
                 "",
                 controller.streetController,
                 hintText: "Street Name/Number",
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: commonTextfieldWithTitle(
-                      "",
-                      controller.blockController,
-                      hintText: "Block No.",
+              SizedBox(
+                width: 320,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: commonTextfieldWithTitle(
+                        "",
+                        controller.blockController,
+                        hintText: "Block No.",
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: commonTextfieldWithTitle(
-                      "",
-                      controller.avenueController,
-                      hintText: "Avenue (optional)",
+                    const SizedBox(
+                      width: 8,
                     ),
-                  )
-                ],
+                    Expanded(
+                      child: commonTextfieldWithTitle(
+                        "",
+                        controller.avenueController,
+                        hintText: "Avenue (optional)",
+                      ),
+                    )
+                  ],
+                ),
               ),
               commonTextfieldWithTitle(
                 "",
@@ -184,7 +196,7 @@ class AddResidenceSecondPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Obx(() {
-                return commonButton("Submit",
+                return commonButton("Submit".tr,
                     isLoading: controller.loading.value, onTap: () {
                   if (controller.validateSecondPage()) {
                     controller.loginApi(isEdit);

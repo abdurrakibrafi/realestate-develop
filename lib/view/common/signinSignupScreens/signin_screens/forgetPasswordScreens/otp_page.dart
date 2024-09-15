@@ -34,7 +34,7 @@ class OtpPage extends StatelessWidget {
       backgroundColor: AppColor.whiteColor,
       body: Image.asset(
         "assets/images/bg-image.jpg",
-        fit: BoxFit.fill,
+        fit: BoxFit.fitWidth,
       ),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(16.0),

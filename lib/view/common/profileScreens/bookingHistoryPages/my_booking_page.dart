@@ -30,6 +30,7 @@ class _MyBookingPageState extends State<MyBookingPage>
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
+    bookedController.getBookingRequest();
     super.initState();
   }
 

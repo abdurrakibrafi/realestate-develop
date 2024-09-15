@@ -101,49 +101,56 @@ class _FeaturePageState extends State<FeaturePage> {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  commonText("Select Features".tr, size: 16, isBold: true),
+                  commonText("Select features".tr, size: 16, isBold: true),
                 ],
               ),
               const SizedBox(
                 height: 5,
               ),
               Obx(() {
-                return Wrap(
-                  spacing: 16.0,
-                  runSpacing: 16.0,
-                  children: controller.features.map((feature) {
-                    bool isSelected =
-                        controller.selectedFeatures.contains(feature["label"]);
-                    return GestureDetector(
-                      onTap: () {
-                        if (isSelected) {
-                          controller.selectedFeatures.remove(feature["label"]);
-                        } else {
-                          log(controller.selectedFeatures.toString());
-                          controller.selectedFeatures.add(feature["label"]!);
-                        }
-                      },
-                      child:
-                          FeatureItem(feature: feature, isSelected: isSelected),
-                    );
-                  }).toList(),
+                return Center(
+                  child: Wrap(
+                    spacing: 16.0,
+                    runSpacing: 16.0,
+                    children: controller.features.map((feature) {
+                      bool isSelected =
+                          controller.selectedFeatures.contains(feature["label"]);
+                      return GestureDetector(
+                        onTap: () {
+                          if (isSelected) {
+                            controller.selectedFeatures.remove(feature["label"]);
+                          } else {
+                            log(controller.selectedFeatures.toString());
+                            controller.selectedFeatures.add(feature["label"]!);
+                          }
+                        },
+                        child:
+                            FeatureItem(feature: feature, isSelected: isSelected),
+                      );
+                    }).toList(),
+                  ),
                 );
               }),
               const SizedBox(
                 height: 20,
               ),
-              commonButton(
-                "Next".tr,
-                onTap: () {
-                  if (controller.validateFeaturePage()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              RequermentsPage(isEdit: widget.isEdit)),
-                    );
-                  }
-                },
+              Center(
+                child: SizedBox(
+                  width: 320,
+                  child: commonButton(
+                    "Next".tr,
+                    onTap: () {
+                      if (controller.validateFeaturePage()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  RequermentsPage(isEdit: widget.isEdit)),
+                        );
+                      }
+                    },
+                  ),
+                ),
               ),
             ],
           ),

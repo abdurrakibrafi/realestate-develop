@@ -14,6 +14,7 @@ import 'package:real_estate_management/view/common/profileScreens/tutorials/tuto
 import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 import 'package:real_estate_management/viewModel/controllers/profileControllers/profile_controller.dart';
 import 'package:real_estate_management/viewModel/controllers/user_preference/user_preference_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../splashScreens/signpage.dart';
 import 'incomePages/income_page.dart';
@@ -52,6 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         // leading: const Padding(
         //   padding: EdgeInsets.only(left: 16.0),
@@ -62,30 +64,20 @@ class _ProfilePageState extends State<ProfilePage> {
         // ),
         backgroundColor: Color(0xff263238),
       ),
-      body: Obx(() {
-        if (profileController.isLoading.isTrue) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        return profileController.profileData.value == null
-            ? Center(
-                child: commonText("No Data Found".tr),
-              )
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    _buildHeader(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _buildSettingsList(context),
-                    const SizedBox(
-                      height: 40,
-                    )
-                  ],
-                ),
-              );
-      }),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Obx(() => _buildHeader(),),
+            const SizedBox(
+              height: 10,
+            ),
+            _buildSettingsList(context),
+            const SizedBox(
+              height: 40,
+            )
+          ],
+        ),
+      )
     );
   }
 
@@ -106,21 +98,28 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 10,
             ),
             ClipOval(
-              child: Image.network(
-                profileController.profileData.value!.image ??
-                    DummyImage.networkImage,
+              child:  profileController.profileData.value?.image == null?
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColor.whiteColor,width: 2),
+                    color: AppColor.primaryColor
+                ),
+                child: Center(
+                  child: Text(
+                    profileController.profileData.value?.name?.substring(0, 1).toUpperCase() ?? '',
+                    style: TextStyle(color: AppColor.whiteColor,fontSize: 50),
+                    softWrap: true,  // Enable text wrapping
+                  ),
+                )
+              )
+                  : Image.network(
+                profileController.profileData.value!.image.toString(),
                 fit: BoxFit.cover,
                 width: 120,
                 height: 120,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Image.network(
-                    DummyImage.networkImage,
-                    fit: BoxFit.cover,
-                    width: 120,
-                    height: 120,
-                  );
-                },
               ),
             ),
             const SizedBox(height: 10),
@@ -342,6 +341,9 @@ class _ProfilePageState extends State<ProfilePage> {
           _buildSettingsItem("assets/icons/profile/logout.png", 'Logout'.tr,
               () {
             userPreference.removeUser().then((value) {
+/*              SharedPreferences sp = await SharedPreferences.getInstance();
+              String? language =  sp.getString("language");
+              sp.setString("language", language.toString());*/
               //resetApp();
               Get.offAll(const SigninPage());
             });

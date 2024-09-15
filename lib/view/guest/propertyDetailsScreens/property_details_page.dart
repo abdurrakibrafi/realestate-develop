@@ -413,10 +413,8 @@ class _ItemDetailsState extends State<ItemDetails>
                               color: const Color(0xFFD9D9D9),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  widget.data.host!.image!.isEmpty
-                                      ? DummyImage.networkImage
-                                      : widget.data.host!.image!,
+                                image: widget.data.host?.image == null? NetworkImage(DummyImage.networkImage) : NetworkImage(
+                                  widget.data.host!.image!,
                                 ),
                               ),
                             ),

@@ -67,7 +67,7 @@ class SigninViewModel extends GetxController {
     };
     log(data.toString());
     _api.loginApi(data).then((value) {
-      if (value.data!.user!.verification!.status == true) {
+   //   if (value.data!.user!.verification!.status == true) {
         LocalStorage.saveData(
             key: "userId", data: value.data!.user!.sId.toString());
         LocalStorage.saveData(
@@ -84,7 +84,7 @@ class SigninViewModel extends GetxController {
           loading.value = false;
           Get.offAll(() => const GuestRootScreen());
         });
-      } else {
+     /* } else {
         _otpApi.resendOtpApi(otpData).then((value) {
           if (value.success == true) {
             userPreference
@@ -99,7 +99,7 @@ class SigninViewModel extends GetxController {
             });
           }
         });
-      }
+      }*/
     }).onError((error, stackTrace) {
       loading.value = false;
       log(error.toString());

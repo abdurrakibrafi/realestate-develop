@@ -41,6 +41,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
       controller.propertyNameController.text = widget.data!.propertyName!;
       controller.squareFeetController.text = widget.data!.squareFeet!;
       controller.bathrooms.value = int.parse(widget.data!.bathrooms!);
+      controller.grace.value = int.parse(widget.data!.grace!);
       controller.bedrooms.value = int.parse(widget.data!.bedrooms!);
       controller.residenceType.value = widget.data!.residenceType!;
       controller.aboutPropertyController.text = widget.data!.propertyAbout!;
@@ -56,10 +57,12 @@ class _AddResidencePageState extends State<AddResidencePage> {
       controller.certificates[0]["isEnabled"] =
           widget.data!.document!.marriageCertificate!;
       controller.certificates[1]["isEnabled"] =
-          widget.data!.document!.salaryCertificate!;
+      widget.data!.document!.criminalStatusCertificate!;
       controller.certificates[2]["isEnabled"] =
-          widget.data!.document!.bankStatement!;
+          widget.data!.document!.salaryCertificate!;
       controller.certificates[3]["isEnabled"] =
+          widget.data!.document!.bankStatement!;
+      controller.certificates[4]["isEnabled"] =
           widget.data!.document!.passport!;
       controller.selectedgovernorate.value = widget.data!.address!.governorate!;
       controller.selectedarea.value = widget.data!.address!.area!;
@@ -95,7 +98,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
-        title: commonText(widget.isEdit ? "Edit Residence" : "Add Residence".tr,
+        title: commonText(widget.isEdit ? "Edit Residence" : "Add Residences".tr,
             size: 16, isBold: true, color: AppColor.darkGreyColor),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -209,9 +212,9 @@ class _AddResidencePageState extends State<AddResidencePage> {
                                         ),
                                         commonText("Photos".tr,
                                             size: 14, isBold: true),
-                                        commonText("Max. 10 files, 10 MB each",
+                                        commonText("Max. 10 files, 10 MB each".tr,
                                             color: Colors.grey),
-                                        commonIconButton("Upload",
+                                        commonIconButton("Upload".tr,
                                             icon: Image.asset(
                                                 "assets/icons/export.png"),
                                             color: Colors.black87,
@@ -253,7 +256,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                               ),
                               SizedBox(height: 10,),
                               commonButton(
-                                "Clear Videos",
+                                "Clear Videos".tr,
                                 onTap: () {
                                   controller.pickedVideos.clear();
                                 },
@@ -283,7 +286,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                                   ),
                                   SizedBox(height: 10,),
                                   commonButton(
-                                    "Clear Videos",
+                                    "Clear Videos".tr,
                                     onTap: () {
                                       controller.videos.clear();
                                     },
@@ -314,7 +317,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                                       ),
                                       commonText("Videos".tr,
                                           size: 14, isBold: true),
-                                      commonText("Max. 5 files, 10 MB each",
+                                      commonText("Max. 5 files, 10 MB each".tr,
                                           color: Colors.grey),
                                       commonIconButton("Upload",
                                           icon: Image.asset(
@@ -335,7 +338,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                 ),
                 Row(
                   children: [
-                    commonText("Property Type", size: 14.0, isBold: true),
+                    commonText("Property Type".tr, size: 14.0, isBold: true),
                   ],
                 ),
                 const SizedBox(
@@ -379,7 +382,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        commonText("Bathrooms", size: 14.0, isBold: true),
+                        commonText("Bathrooms".tr, size: 14.0, isBold: true),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -432,7 +435,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        commonText("Bedrooms", size: 14.0, isBold: true),
+                        commonText("Bedrooms".tr, size: 14.0, isBold: true),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -483,7 +486,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                           ],
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -505,8 +508,8 @@ class _AddResidencePageState extends State<AddResidencePage> {
                 // ),
                 Obx(() {
                   return RadioGroup(
-                    groupName: "Residence Type",
-                    options: const ["Condominium", "Private"],
+                    groupName: "Residence Type".tr,
+                    options:  ["Condominium".tr, "Private".tr],
                     selectedValue: controller.residenceType.value,
                     onChanged: (value) {
                       controller.residenceType.value = value;

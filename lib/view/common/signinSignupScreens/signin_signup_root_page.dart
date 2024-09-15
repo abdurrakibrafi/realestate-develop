@@ -8,6 +8,7 @@ import 'package:real_estate_management/res/components/common_text.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signup_screens/signup_page.dart';
 import 'package:real_estate_management/viewModel/controllers/authControllers/signin_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginChooserScreen extends StatefulWidget {
   const LoginChooserScreen({super.key});
@@ -20,8 +21,26 @@ class _LoginChooserScreenState extends State<LoginChooserScreen> {
   final controller = Get.put(LoginChooserController());
   final loginViewModel = Get.put(SigninViewModel());
   String role = "";
+  String languageData = "en";
+
+  @override
+  void initState() {
+    languageData = "en";
+    getLanguageData();
+    super.initState();
+  }
+
+  getLanguageData()async{
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String? language = sp.getString("language");
+    print("<<<<<<<<<<<<<<<<<<<<<<<<<< ${language.toString()}");
+    setState(() {
+      languageData = language.toString();
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> $languageData");
     return Scaffold(
       body: Stack(children: [
         SizedBox(
@@ -187,20 +206,33 @@ class _LoginChooserScreenState extends State<LoginChooserScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    "I'm a $text",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: value == groupValue
-                          ? AppColor.whiteColor
-                          : Colors.black,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "I'm a".tr,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: value == groupValue
+                              ? AppColor.whiteColor
+                              : Colors.black,
+                        ),
+                      ),
+                      Text(
+                        " $text",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: value == groupValue
+                              ? AppColor.whiteColor
+                              : Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             Align(
-              alignment: Alignment.topRight,
+              alignment: languageData == "en"? Alignment.topRight : Alignment.topLeft,
               child: Radio<int>(
                 value: value,
                 groupValue: groupValue,

@@ -50,7 +50,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: commonText("Booking", isBold: true, size: 20),
+        title: commonText("Booking".tr, isBold: true, size: 20),
         backgroundColor: AppColor.whiteColor,
         centerTitle: true,
         elevation: 0,
@@ -89,11 +89,11 @@ class _SchedulingPageState extends State<SchedulingPage> {
                     },
                   ),
                 ),
-                const Text('I agree to share my personal information \nwith this landlord',style: TextStyle(fontSize: 11),),
+                 Text('I agree to share my personal information with this landlord'.tr,style: TextStyle(fontSize: 11),),
               ],
             ),
             const SizedBox(height: 20),
-            Obx(() => commonButton("Send Request",isLoading: controller.loading.value,
+            Obx(() => commonButton("Send Request".tr,isLoading: controller.loading.value,
               onTap: () {
                 controller.api(
                     widget.residence,
@@ -136,7 +136,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
-                DummyImage.networkImage,
+                widget.image,
                 height: 90,
                 width: 90,
                 fit: BoxFit.cover,
@@ -213,7 +213,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            commonText("Select Check-in Date", isBold: true, size: 16),
+            commonText("Select Check-in Date".tr, isBold: true, size: 16),
 
           ],
         ),
@@ -229,7 +229,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
           },
         ),
         const SizedBox(height: 10),
-        commonText("Select Duration of Contract", isBold: true, size: 16),
+        commonText("Select Duration of Contract".tr, isBold: true, size: 16),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -290,13 +290,13 @@ class _SchedulingPageState extends State<SchedulingPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: _buildGuestCounter("Adult", controller.adultCount.value,
+                child: _buildGuestCounter("Adult".tr, controller.adultCount.value,
                     (value) {
                   controller.adultCount.value = value;
                 }),
               ),
               Expanded(
-                child: _buildGuestCounter("Child", controller.childCount.value,
+                child: _buildGuestCounter("Child".tr, controller.childCount.value,
                     (value) {
                   controller.childCount.value = value;
                 }),

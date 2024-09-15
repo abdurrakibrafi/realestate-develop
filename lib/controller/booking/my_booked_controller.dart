@@ -19,8 +19,9 @@ class MyBookedController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     getBookingRequest();
+    super.onInit();
+
   }
 
   ///newBooking

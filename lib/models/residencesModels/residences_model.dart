@@ -61,6 +61,7 @@ class AllResidence {
   String? squareFeet;
   String? bathrooms;
   String? bedrooms;
+  String? grace;
   String? residenceType;
   String? propertyAbout;
   List<String>? features;
@@ -87,6 +88,7 @@ class AllResidence {
       this.squareFeet,
       this.bathrooms,
       this.bedrooms,
+      this.grace,
       this.residenceType,
       this.propertyAbout,
       this.features,
@@ -122,6 +124,7 @@ class AllResidence {
     squareFeet = json['squareFeet'];
     bathrooms = json['bathrooms'];
     bedrooms = json['bedrooms'];
+    grace = json['gracePeriod'];
     residenceType = json['residenceType'];
     propertyAbout = json['propertyAbout'];
     features = json['features'].cast<String>();
@@ -165,6 +168,7 @@ class AllResidence {
     data['squareFeet'] = squareFeet;
     data['bathrooms'] = bathrooms;
     data['bedrooms'] = bedrooms;
+    data['gracePeriod'] = grace;
     data['residenceType'] = residenceType;
     data['propertyAbout'] = propertyAbout;
     data['features'] = features;
@@ -189,18 +193,21 @@ class AllResidence {
 
 class Document {
   bool? marriageCertificate;
+  bool? criminalStatusCertificate;
   bool? salaryCertificate;
   bool? bankStatement;
   bool? passport;
 
   Document(
       {this.marriageCertificate,
+      this.criminalStatusCertificate,
       this.salaryCertificate,
       this.bankStatement,
       this.passport});
 
   Document.fromJson(Map<String, dynamic> json) {
     marriageCertificate = json['marriageCertificate'];
+    criminalStatusCertificate = json['criminalStatusCertificate'];
     salaryCertificate = json['salaryCertificate'];
     bankStatement = json['bankStatement'];
     passport = json['passport'];
@@ -209,6 +216,7 @@ class Document {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['marriageCertificate'] = marriageCertificate;
+    data['criminalStatusCertificate'] = criminalStatusCertificate;
     data['salaryCertificate'] = salaryCertificate;
     data['bankStatement'] = bankStatement;
     data['passport'] = passport;

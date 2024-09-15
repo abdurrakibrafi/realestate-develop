@@ -50,7 +50,7 @@ class _GuestRootScreenState extends State<GuestRootScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const ImageIcon(
-              AssetImage('assets/icons/common/home.png'),
+              AssetImage('assets/icons/common/home-2.png'),
             ),
             label: 'Home'.tr,
           ),

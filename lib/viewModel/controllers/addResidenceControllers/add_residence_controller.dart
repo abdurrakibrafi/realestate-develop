@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' as getX;
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -140,6 +141,7 @@ class AddResidenceController extends GetxController {
   Map<String, List<String>> governorateToAreas = <String, List<String>>{}.obs;
   RxInt bathrooms = 1.obs;
   RxInt bedrooms = 1.obs;
+  RxInt grace = 1.obs;
   RxString address = "Manhattan, New York".obs;
   RxString latitude = "".obs;
   RxString longitude = "".obs;
@@ -208,10 +210,11 @@ class AddResidenceController extends GetxController {
   ];
 
   final RxList<Map<String, dynamic>> certificates = [
-    {"label": "Marriage Certificate", "isEnabled": true},
-    {"label": "Salary Certificate", "isEnabled": true},
-    {"label": "Bank Statement", "isEnabled": false},
-    {"label": "Passport (Non-Kuwaiti)", "isEnabled": false},
+    {"label": "Marriage Certificate".tr, "isEnabled": true},
+    {"label": "Criminal Status Certificate".tr, "isEnabled": true},
+    {"label": "Salary Certificate".tr, "isEnabled": true},
+    {"label": "Bank Statement".tr, "isEnabled": false},
+    {"label": "Passport (Non-Kuwaiti)".tr, "isEnabled": false},
   ].obs;
 
   final RxList<Map<String, String>> features = [
@@ -424,9 +427,10 @@ class AddResidenceController extends GetxController {
       };
       Map<String, dynamic> document = {
         "marriageCertificate": certificates[0]["isEnabled"],
-        "salaryCertificate": certificates[1]["isEnabled"],
-        "bankStatement": certificates[2]["isEnabled"],
-        "passport": certificates[3]["isEnabled"]
+        "criminalStatusCertificate": certificates[1]["isEnabled"],
+        "salaryCertificate": certificates[2]["isEnabled"],
+        "bankStatement": certificates[3]["isEnabled"],
+        "passport": certificates[4]["isEnabled"]
       };
 
       Map<String, dynamic> nonFileData = {
@@ -447,6 +451,7 @@ class AddResidenceController extends GetxController {
         "isDeleted": false,
         "residenceType": residenceType.value,
         "rent": rentController.text,
+        "gracePeriod": grace.value.toString(),
         // "perNightPrice": int.parse(rentPerNightController.text),
         // "perMonthPrice": int.parse(rentPerMonthController.text),
         "deposit": depositeController.text,

@@ -140,7 +140,6 @@ class _SigninPageState extends State<SigninPage> {
                   child: Column(
                     children: [
                       commonTextfieldWithTitle(
-
                           "Email".tr, loginViewModel.emailController.value,
                           focusNode: loginViewModel.emailFocusNode.value,
                           onValidate: (value) {
@@ -201,7 +200,7 @@ class _SigninPageState extends State<SigninPage> {
                         );
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: commonText("Forgot password?".tr,
                             color: AppColor.primaryColor),
                       )),

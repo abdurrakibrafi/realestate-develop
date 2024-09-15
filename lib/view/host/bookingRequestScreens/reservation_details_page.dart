@@ -35,7 +35,7 @@ class ReservationDetailsPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,12 +57,14 @@ class ReservationDetailsPage extends StatelessWidget {
                       .format(DateTime.parse(booking.createdAt.toString()).toLocal()),
                   Colors.orange),
               _buildDetailRow("Check-in",
-                  DateFormat('d MMM').format(DateTime.parse(booking.startDate.toString()))),
+                  DateFormat('d MMM').format(DateTime.parse(booking.startDate.toString())), Colors.orange),
               _buildDetailRow("Check-out",
-                  DateFormat('d MMM').format(DateTime.parse(booking.endDate.toString()))),
+                  DateFormat('d MMM').format(DateTime.parse(booking.endDate.toString())), Colors.orange),
               // _buildDetailRow("Duration", data.d),
               _buildDetailRow(
                   "Amount", booking.residence!.rent.toString(), Colors.orange),
+              _buildDetailRow("Number of Guests",
+                  "${booking.guest?.adult.toString()} Adults • ${booking.guest?.child.toString()} Child", Colors.orange),
 
               const SizedBox(height: 20),
               const Divider(color: Colors.grey),
@@ -76,15 +78,13 @@ class ReservationDetailsPage extends StatelessWidget {
               const SizedBox(height: 10),
 
               // Tenant Details
-              _buildDetailRow("Number of Guests",
-                  "${booking.guest?.adult.toString()} Adults • ${booking.guest?.child.toString()} Child"),
               _buildDetailRow("Full Name", "${booking.user?.name}", Colors.orange),
-              _buildDetailRow("Gender", "${booking.user?.gender}"),
+              _buildDetailRow("Gender", "${booking.user?.gender}", Colors.orange),
               _buildDetailRow(
                   "Nationality", "${booking.user?.nationality}", Colors.orange),
-              _buildDetailRow("Marital Status", "${booking.user?.maritalStatus}"),
-              _buildDetailRow("Date of Birth", "${booking.user?.dateOfBirth}"),
-              _buildDetailRow("Job Title", "${booking.user?.status}"),
+              _buildDetailRow("Marital Status", "${booking.user?.maritalStatus}", Colors.orange),
+              _buildDetailRow("Date of Birth", "${DateFormat('dd-MM-yyyy').format(DateTime.parse(booking.user!.dateOfBirth.toString()))}", Colors.orange),
+              _buildDetailRow("Job Title", "${booking.user?.status}", Colors.orange),
               _buildDetailRow(
                   "Income", "${booking.user?.monthlyIncome}", Colors.orange),
 
@@ -95,12 +95,12 @@ class ReservationDetailsPage extends StatelessWidget {
                 return Row(
                   children: [
                     Expanded(
-                        child: commonBorderButton("Cancel",
+                        child: commonBorderButton("Cancel".tr,
                             isLoading: controller.loadingc.value, onTap: () {
                       controller.updateProfileApi(booking.id!, false,booking.id!);
                     })),
                     Expanded(
-                        child: commonButton("Accept",
+                        child: commonButton("Accept".tr,
                             isLoading: controller.loadinga.value, onTap: () {
                             //  Get.to(() => BookingSignView(bookingId: booking.id!,));
                       controller.updateProfileApi(booking.id!, true,booking.id!);

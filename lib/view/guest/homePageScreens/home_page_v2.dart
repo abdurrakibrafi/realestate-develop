@@ -53,11 +53,13 @@ class _HomePageV2State extends State<HomePageV2> {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: ()async {
           await  profileController.fetchData();
           await residencesController.fetchData();
+          await addResidenceController.getCategory();
          print("${await preference.getUser()}");
 
         },
@@ -82,21 +84,29 @@ class _HomePageV2State extends State<HomePageV2> {
                       );
                     },
                     child:   ClipOval(
-                      child: Image.network(
-                        profileController.profileData.value?.image ??
-                            DummyImage.networkImage,
+                      child: profileController.profileData.value?.image == null?
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppColor.whiteColor,width: 2),
+                              color: AppColor.primaryColor
+                            ),
+                            child: Obx(() => Center(
+                              child: Text(
+                                profileController.profileData.value?.name?.substring(0, 1).toUpperCase() ?? '',
+                                style: TextStyle(color: AppColor.whiteColor),
+                                softWrap: true,  // Enable text wrapping
+                              ),
+                            )),
+                          )
+                          : Image.network(
+                        profileController.profileData.value!.image.toString(),
                         fit: BoxFit.cover,
                         width: 40,
                         height: 40,
-                        errorBuilder: (BuildContext context, Object exception,
-                            StackTrace? stackTrace) {
-                          return Image.network(
-                            DummyImage.networkImage,
-                            fit: BoxFit.cover,
-                            width: 40,
-                            height: 40,
-                          );
-                        },
+
                       ),
                     ),
                   ),
@@ -212,19 +222,15 @@ class _HomePageV2State extends State<HomePageV2> {
                                       controller: searchController,
                                       decoration: InputDecoration(
                                         contentPadding: const EdgeInsets.all(2.0),
-                                        hintText: "Search for a Property".tr,
+                                        hintText: "Search".tr,
                                         hintStyle: GoogleFonts.poppins(
                                           fontSize: 12,
                                           color: AppColor.darkGreyColor,
                                         ),
                                         border: InputBorder.none,
-                                        prefixIcon: const Padding(
+                                        prefixIcon:  Padding(
                                           padding: EdgeInsets.all(10.0),
-                                          child: ImageIcon(
-                                            AssetImage(
-                                                "assets/icons/searchIcon.png"),
-                                            size: 24.0,
-                                          ),
+                                          child: Image.asset("assets/icons/common/search-normal.png"),
                                         ),
                                       ),
                                     ),
@@ -239,16 +245,25 @@ class _HomePageV2State extends State<HomePageV2> {
                                   _scaffoldKey.currentState!.openDrawer();
                                 });
                               },
-                              child: Container(
-                                padding: const EdgeInsets.all(12.0),
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColor.searchBlack),
-                                child: const ImageIcon(
-                                  color: AppColor.whiteColor,
-                                  AssetImage("assets/icons/menu.png"),
-                                  size: 24.0,
-                                ),
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(12.0),
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColor.searchBlack),
+                                    child: const ImageIcon(
+                                      color: AppColor.whiteColor,
+                                      AssetImage("assets/icons/common/more.png"),
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                  Positioned(
+                                      top: 8,
+                                      right: 8,
+                                      child: CircleAvatar(radius: 6,backgroundColor: AppColor.primaryColor,))
+                                ],
                               ),
                             ),
                           ],
