@@ -45,7 +45,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                certificate["label"],
+                certificate["label"].toString().tr,
                 style: const TextStyle(
                   fontSize: 16.0,
                   color: AppColor.darkGreyColor,
@@ -307,7 +307,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
               const SizedBox(
                 height: 20,
               ),
-              commonText("Required Documents",isBold: true,size: 16),
+              commonText("Required Documents".tr,isBold: true,size: 16),
               buildCertificateToggleList(),
               const SizedBox(
                 height: 20,

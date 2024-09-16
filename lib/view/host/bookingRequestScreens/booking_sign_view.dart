@@ -12,7 +12,11 @@ class BookingSignView extends StatefulWidget {
   final String bookingId;
   final bool isTenant;
 
-  const BookingSignView({super.key, required this.bookingId, required this.isTenant,});
+  const BookingSignView({
+    super.key,
+    required this.bookingId,
+    required this.isTenant,
+  });
 
   @override
   State<BookingSignView> createState() => _BookingSignViewState();
@@ -56,12 +60,13 @@ class _BookingSignViewState extends State<BookingSignView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: commonText("Booking Confirmation",
+                child: commonText("Booking Confirmation".tr,
                     size: 18, isBold: true, color: Colors.black),
               ),
               SizedBox(height: 5),
               commonText(
-                  "To confirm this booking, please enter your civil ID and your electronic signature. To review the contract, click the 'View' button below.",
+                  "To confirm this booking, please enter your civil ID and your electronic signature. To review the contract, click the 'View' button below."
+                      .tr,
                   size: 11,
                   isBold: false,
                   color: Colors.black,
@@ -72,19 +77,105 @@ class _BookingSignViewState extends State<BookingSignView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  commonText("View Contract",
+                  commonText("Required Documents".tr,
                       size: 13, isBold: true, color: Colors.black),
-                  Container(
-                    height: 20,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.primaryColor),
-                      borderRadius: BorderRadius.circular(20),
+                  GestureDetector(
+                    onTap: () {
+                      controller.pickImages();
+                    },
+                    child: Container(
+                      height: 20,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColor.primaryColor),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Upload".tr,
+                          style: TextStyle(
+                              color: AppColor.primaryColor, fontSize: 10),
+                        ),
+                      ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "View",
-                        style: TextStyle(color: AppColor.primaryColor, fontSize: 10),
+                  ),
+                ],
+              ),
+              // SizedBox(height: 10),
+              Obx(() => controller.pickedImages.isNotEmpty
+                  ? GridView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(top: 10.0),
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                      ),
+                      itemCount: controller.pickedImages.length,
+                      itemBuilder: (context, index) {
+                        return Image.file(
+                          controller.pickedImages[index],
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    )
+                  : SizedBox()),
+              Obx(
+                () => controller.pickedImages.isNotEmpty
+                    ? Align(
+                        alignment: Alignment.bottomRight,
+                        child: GestureDetector(
+                          onTap: () => controller.pickedImages.clear(),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Container(
+                              height: 20,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: AppColor.primaryColor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Clear".tr,
+                                  style: TextStyle(
+                                      color: AppColor.primaryColor,
+                                      fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+              ),
+
+              SizedBox(height: 10),
+              Divider(color: Colors.grey.withOpacity(0.2)),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  commonText("View Contract".tr,
+                      size: 13, isBold: true, color: Colors.black),
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Container(
+                      height: 20,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColor.primaryColor),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "View".tr,
+                          style: TextStyle(
+                              color: AppColor.primaryColor, fontSize: 10),
+                        ),
                       ),
                     ),
                   ),
@@ -93,7 +184,7 @@ class _BookingSignViewState extends State<BookingSignView> {
               SizedBox(height: 10),
               Divider(color: Colors.grey.withOpacity(0.2)),
               SizedBox(height: 10),
-              commonText("Civil ID Number",
+              commonText("Civil ID Number".tr,
                   size: 13, isBold: true, color: Colors.black),
               SizedBox(height: 10),
               Container(
@@ -109,7 +200,7 @@ class _BookingSignViewState extends State<BookingSignView> {
                       controller: civilTextController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Enter your civil ID number",
+                        hintText: "Enter your civil ID number".tr,
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -134,7 +225,7 @@ class _BookingSignViewState extends State<BookingSignView> {
                     children: [
                       Center(
                         child: commonText(
-                            "Please enter your digital signature.",
+                            "Please enter your digital signature.".tr,
                             size: 13,
                             isBold: false,
                             color: Colors.grey),
@@ -153,12 +244,14 @@ class _BookingSignViewState extends State<BookingSignView> {
                             _signatureController.clear();
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 14.0),
                             child: Container(
                               height: 30,
                               width: 85,
                               decoration: BoxDecoration(
-                                border: Border.all(color: AppColor.primaryColor),
+                                border:
+                                    Border.all(color: AppColor.primaryColor),
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Row(
@@ -168,7 +261,7 @@ class _BookingSignViewState extends State<BookingSignView> {
                                   Icon(Icons.restart_alt,
                                       color: AppColor.primaryColor),
                                   Text(
-                                    "Try Again",
+                                    "Try Again".tr,
                                     style: TextStyle(
                                         color: AppColor.primaryColor,
                                         fontSize: 10),
@@ -194,46 +287,63 @@ class _BookingSignViewState extends State<BookingSignView> {
               Row(
                 children: [
                   Obx(
-                        () => Checkbox(
+                    () => Checkbox(
                       value: isChecked.value,
                       onChanged: (bool? value) {
                         toggleCheckbox();
                       },
                     ),
                   ),
-                  const Text(
-                    'I have read and accepted the Terms and Conditions',
+                  Text(
+                    'I have read and accepted the Terms and Conditions'.tr,
                     style: TextStyle(fontSize: 11),
                   ),
                 ],
               ),
               SizedBox(height: 20),
               Obx(
-                    () => commonButton(
-                  "Confirm",
+                () => commonButton(
+                  "Confirm".tr,
                   onTap: () {
-                  if(LocalStorage.getData(key: "role") == "user"){
-                    if (isChecked.value) {
-                      controller.submitTenantSignature(widget.bookingId, _signatureController, civilTextController.text);
+                    if (LocalStorage.getData(key: "role") == "user") {
+                      if (controller.pickedImages.isNotEmpty) {
+                        if (isChecked.value) {
+                          controller.submitTenantSignature(widget.bookingId,
+                              _signatureController, civilTextController.text);
+                        } else {
+                          Get.snackbar(
+                            "Error",
+                            "Please accept the terms and conditions.",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      } else {
+                        Get.snackbar(
+                          "Error",
+                          "Please add required documents",
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
                     } else {
-                      Get.snackbar(
-                        "Error",
-                        "Please accept the terms and conditions.",
-                        snackPosition: SnackPosition.BOTTOM,
-                      );
+                      if (controller.pickedImages.isNotEmpty) {
+                        if (isChecked.value) {
+                          controller.submitSignature(widget.bookingId,
+                              _signatureController, civilTextController.text);
+                        } else {
+                          Get.snackbar(
+                            "Error",
+                            "Please accept the terms and conditions.",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      } else {
+                        Get.snackbar(
+                          "Error",
+                          "Please add required documents",
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
                     }
-                  }else{
-                    if (isChecked.value) {
-                      controller.submitSignature(widget.bookingId, _signatureController, civilTextController.text);
-
-                    } else {
-                      Get.snackbar(
-                        "Error",
-                        "Please accept the terms and conditions.",
-                        snackPosition: SnackPosition.BOTTOM,
-                      );
-                    }
-                  }
                   },
                   isLoading: controller.isLoading.value,
                 ),

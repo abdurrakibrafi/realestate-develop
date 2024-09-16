@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:real_estate_management/service/socket_service.dart';
@@ -33,7 +34,12 @@ void main() async {
   await Get.putAsync(() => SocketService().init());
 
   // Run the app
-  runApp(MyApp(languageCode: languageCode));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MyApp(languageCode: languageCode));
+  });
 }
 
 Future<String> getLanguage() async {

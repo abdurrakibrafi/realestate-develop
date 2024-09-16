@@ -11,22 +11,25 @@ class BookingSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-      //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(height: 120,),
-          Image.asset("assets/icons/common/success.png",scale: 4,),
-          SizedBox(height: 24,),
-          commonText("Success!".tr,size: 20,isBold: true),
-          SizedBox(height: 24,),
-          commonText("Your booking has been finalized and the legal agreement is now in effect".tr,size: 14,isBold: false,textAlign: TextAlign.center),
-          SizedBox(height: 24,),
-          commonText("Regards".tr,size: 15,isBold: true),
-          commonText("The Mosta’ajer App Team",size: 15,isBold: true),
-          SizedBox(height: 160,),
-          commonButton("Go to home".tr,onTap: () =>  Get.offAll(() => GuestRootScreen())),
-          SizedBox(height: 24,),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+        //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(height: 120,),
+            Image.asset("assets/icons/common/success.png",scale: 4,),
+            SizedBox(height: 24,),
+            commonText("Success!".tr,size: 20,isBold: true),
+            SizedBox(height: 24,),
+            commonText("Your booking has been finalized and the legal agreement is now in effect".tr,size: 14,isBold: false,textAlign: TextAlign.center),
+            SizedBox(height: 24,),
+            commonText("Regards".tr,size: 15,isBold: true),
+            commonText("The Mosta’ajer App Team",size: 15,isBold: true),
+            SizedBox(height: 160,),
+            commonButton("Go to home".tr,onTap: () =>  Get.offAll(() => GuestRootScreen())),
+            SizedBox(height: 24,),
+          ],
+        ),
       ),
     );
   }

@@ -210,11 +210,11 @@ class AddResidenceController extends GetxController {
   ];
 
   final RxList<Map<String, dynamic>> certificates = [
-    {"label": "Marriage Certificate".tr, "isEnabled": true},
-    {"label": "Criminal Status Certificate".tr, "isEnabled": true},
-    {"label": "Salary Certificate".tr, "isEnabled": true},
-    {"label": "Bank Statement".tr, "isEnabled": false},
-    {"label": "Passport (Non-Kuwaiti)".tr, "isEnabled": false},
+    {"label": "Marriage Certificate", "isEnabled": true},
+    {"label": "Criminal Status Certificate", "isEnabled": true},
+    {"label": "Salary Certificate", "isEnabled": true},
+    {"label": "Bank Statement", "isEnabled": false},
+    {"label": "Passport (Non-Kuwaiti)", "isEnabled": false},
   ].obs;
 
   final RxList<Map<String, String>> features = [

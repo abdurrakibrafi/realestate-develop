@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:real_estate_management/controller/booking/my_booked_controller.dart';
 import 'package:real_estate_management/res/app_url/app_url.dart';
+import 'package:real_estate_management/utils/utils.dart';
 import 'package:real_estate_management/view/guest/guest_root_screen.dart';
 import 'package:signature/signature.dart';
 
@@ -15,6 +17,19 @@ import '../../viewModel/controllers/user_preference/user_preference_view_model.d
 class BookingSignController extends GetxController {
   final MyBookedController myBookedController = Get.put(MyBookedController());
   var isLoading = false.obs;
+
+  final ImagePicker picker = ImagePicker();
+
+  RxList<File> pickedImages = RxList<File>([]);
+
+  Future<void> pickImages() async {
+    final List<XFile>? images = await picker.pickMultiImage();
+    if (images != null && images.length <= 10) {
+      pickedImages.value = images.map((image) => File(image.path)).toList();
+    } else {
+      Utils.snackBar("Error", "You can select up to 10 images.");
+    }
+  }
 
   Future<void> submitSignature(String bookingId, SignatureController signatureController, String civilId) async {
     try {
@@ -27,7 +42,7 @@ class BookingSignController extends GetxController {
       final Uint8List? signatureData = await signatureController.toPngBytes();
 
       if (signatureData != null) {
-        // Save the image to a temporary file
+        // Save the signature image to a temporary file
         final tempDir = await getTemporaryDirectory();
         final tempFile = File('${tempDir.path}/signature.png');
         await tempFile.writeAsBytes(signatureData);
@@ -41,6 +56,15 @@ class BookingSignController extends GetxController {
           'signature',
           tempFile.path,
         ));
+
+        // Attach the selected images
+        for (var image in pickedImages) {
+          request.files.add(await http.MultipartFile.fromPath(
+            'documents',  // Ensure this field name is correct based on the API specification
+            image.path,
+            filename: image.path.split('/').last,
+          ));
+        }
 
         // Attach other fields
         request.fields['booking'] = bookingId;
@@ -73,6 +97,7 @@ class BookingSignController extends GetxController {
       isLoading.value = false;
     }
   }
+
   Future<void> submitTenantSignature(String bookingId, SignatureController signatureController, String civilId) async {
     try {
       isLoading.value = true;
@@ -84,7 +109,7 @@ class BookingSignController extends GetxController {
       final Uint8List? signatureData = await signatureController.toPngBytes();
 
       if (signatureData != null) {
-        // Save the image to a temporary file
+        // Save the signature image to a temporary file
         final tempDir = await getTemporaryDirectory();
         final tempFile = File('${tempDir.path}/signature.png');
         await tempFile.writeAsBytes(signatureData);
@@ -99,6 +124,15 @@ class BookingSignController extends GetxController {
           tempFile.path,
         ));
 
+        // Attach the selected images
+        for (var image in pickedImages) {
+          request.files.add(await http.MultipartFile.fromPath(
+            'documents',  // Ensure this field name is correct based on the API specification
+            image.path,
+            filename: image.path.split('/').last,
+          ));
+        }
+
         // Attach other fields
         request.fields['user[civilId]'] = civilId;
 
@@ -108,6 +142,7 @@ class BookingSignController extends GetxController {
         // Send the request
         final response = await request.send();
         print(url);
+
         // Handle the response
         if (response.statusCode == 200) {
           final responseBody = await response.stream.bytesToString();
@@ -128,4 +163,5 @@ class BookingSignController extends GetxController {
       isLoading.value = false;
     }
   }
+
 }

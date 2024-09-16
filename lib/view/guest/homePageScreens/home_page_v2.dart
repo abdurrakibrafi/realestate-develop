@@ -60,7 +60,7 @@ class _HomePageV2State extends State<HomePageV2> {
           await  profileController.fetchData();
           await residencesController.fetchData();
           await addResidenceController.getCategory();
-         print("${await preference.getUser()}");
+         print("token: ${await preference.getUser()}");
 
         },
         child: Scaffold(
@@ -83,32 +83,32 @@ class _HomePageV2State extends State<HomePageV2> {
                             const ProfilePage(isHost: false, isGuest: true)),
                       );
                     },
-                    child:   ClipOval(
-                      child: profileController.profileData.value?.image == null?
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
+                    child:   Obx(() => ClipOval(
+                        child: profileController.profileData.value?.image == null?
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: AppColor.whiteColor,width: 2),
                               color: AppColor.primaryColor
+                          ),
+                          child: Center(
+                            child: Text(
+                              profileController.profileData.value?.name?.substring(0, 1).toUpperCase() ?? '',
+                              style: TextStyle(color: AppColor.whiteColor),
+                              softWrap: true,  // Enable text wrapping
                             ),
-                            child: Obx(() => Center(
-                              child: Text(
-                                profileController.profileData.value?.name?.substring(0, 1).toUpperCase() ?? '',
-                                style: TextStyle(color: AppColor.whiteColor),
-                                softWrap: true,  // Enable text wrapping
-                              ),
-                            )),
-                          )
-                          : Image.network(
-                        profileController.profileData.value!.image.toString(),
-                        fit: BoxFit.cover,
-                        width: 40,
-                        height: 40,
+                          ),
+                        )
+                            : Image.network(
+                          profileController.profileData.value!.image.toString(),
+                          fit: BoxFit.cover,
+                          width: 40,
+                          height: 40,
 
-                      ),
-                    ),
+                        )
+                    ),)
                   ),
                   SizedBox(width: 05,),
                   Column(

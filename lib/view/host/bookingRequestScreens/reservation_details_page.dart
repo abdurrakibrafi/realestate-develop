@@ -45,25 +45,25 @@ class ReservationDetailsPage extends StatelessWidget {
 
               // Booking Details Header
               Center(
-                child: commonText("Booking Details",
+                child: commonText("Booking Details".tr,
                     size: 18, isBold: true, color: Colors.black),
               ),
               const SizedBox(height: 10),
 
               // Booking Details
               _buildDetailRow(
-                  "Booking Date",
+                  "Booking Date".tr,
                   DateFormat('d MMM yyyy | hh:mm a')
                       .format(DateTime.parse(booking.createdAt.toString()).toLocal()),
                   Colors.orange),
-              _buildDetailRow("Check-in",
+              _buildDetailRow("Check-In".tr,
                   DateFormat('d MMM').format(DateTime.parse(booking.startDate.toString())), Colors.orange),
-              _buildDetailRow("Check-out",
+              _buildDetailRow("Check-Out".tr,
                   DateFormat('d MMM').format(DateTime.parse(booking.endDate.toString())), Colors.orange),
               // _buildDetailRow("Duration", data.d),
               _buildDetailRow(
-                  "Amount", booking.residence!.rent.toString(), Colors.orange),
-              _buildDetailRow("Number of Guests",
+                  "Amount".tr, booking.residence!.rent.toString(), Colors.orange),
+              _buildDetailRow("Number of Guests".tr,
                   "${booking.guest?.adult.toString()} Adults • ${booking.guest?.child.toString()} Child", Colors.orange),
 
               const SizedBox(height: 20),
@@ -72,21 +72,21 @@ class ReservationDetailsPage extends StatelessWidget {
 
               // Tenant Details Header
               Center(
-                child: commonText("Tenant Details",
+                child: commonText("Tenant Details".tr,
                     size: 18, isBold: true, color: Colors.black),
               ),
               const SizedBox(height: 10),
 
               // Tenant Details
-              _buildDetailRow("Full Name", "${booking.user?.name}", Colors.orange),
-              _buildDetailRow("Gender", "${booking.user?.gender}", Colors.orange),
+              _buildDetailRow("Full Name".tr, "${booking.user?.name}", Colors.orange),
+              _buildDetailRow("Gender".tr, "${booking.user?.gender}", Colors.orange),
               _buildDetailRow(
-                  "Nationality", "${booking.user?.nationality}", Colors.orange),
-              _buildDetailRow("Marital Status", "${booking.user?.maritalStatus}", Colors.orange),
-              _buildDetailRow("Date of Birth", "${DateFormat('dd-MM-yyyy').format(DateTime.parse(booking.user!.dateOfBirth.toString()))}", Colors.orange),
-              _buildDetailRow("Job Title", "${booking.user?.status}", Colors.orange),
+                  "Nationality".tr, "${booking.user?.nationality}", Colors.orange),
+              _buildDetailRow("Marital Status".tr, "${booking.user?.maritalStatus}", Colors.orange),
+              _buildDetailRow("Date of Birth".tr, "${DateFormat('dd-MM-yyyy').format(DateTime.parse(booking.user!.dateOfBirth.toString()))}", Colors.orange),
+              _buildDetailRow("Job Title".tr, "${booking.user?.status}", Colors.orange),
               _buildDetailRow(
-                  "Income", "${booking.user?.monthlyIncome}", Colors.orange),
+                  "Income".tr, "${booking.user?.monthlyIncome}", Colors.orange),
 
               const SizedBox(
                 height: 30,
