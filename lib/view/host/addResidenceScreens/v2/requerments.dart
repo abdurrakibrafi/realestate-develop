@@ -105,61 +105,66 @@ class _RequermentsPageState extends State<RequermentsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 48,
-                    width: 155,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffFCFCFC),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: const Color(0xffD7D7D7),
-                        width: 1.0,
-                      ),
-                    ),
-                    child: TextFormField(
-                      controller:  controller.rentController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: "450 K.D",
-                        hintStyle: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: AppColor.darkGreyColor,
+                  Expanded(
+                    child: Container(
+                      height: 48,
+                     // width: 155,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffFCFCFC),
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: const Color(0xffD7D7D7),
+                          width: 1.0,
                         ),
-                        border: InputBorder.none,
                       ),
-                      textAlign: TextAlign.center,
+                      child: TextFormField(
+                        controller:  controller.rentController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "450 K.D",
+                          hintStyle: GoogleFonts.poppins(
+                            fontSize: 12,
+                            color: AppColor.darkGreyColor,
+                          ),
+                          border: InputBorder.none,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 130,
-                    height: 45,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.primaryColor, width: 1.5),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: DropdownButton<String>(
-                      value: dropdownValue,
-                      icon: Icon(Icons.arrow_drop_down),
-                      iconSize: 24,
-                      elevation: 16,
-                      style: TextStyle(color: Colors.black),
-                      underline: Container(
-                        height: 0, // Remove the default underline
+                  SizedBox(width: 10,),
+                  Expanded(
+                    child: Container(
+                   //   width: 130,
+                      height: 45,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColor.primaryColor, width: 1.5),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                          print(dropdownValue);
-                        });
-                      },
-                      items: <String>['Monthly', 'Per Night']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+                      child: DropdownButton<String>(
+                        value: dropdownValue,
+                        icon: Icon(Icons.arrow_drop_down),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(color: Colors.black),
+                        underline: Container(
+                          height: 0, // Remove the default underline
+                        ),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+                            print(dropdownValue);
+                          });
+                        },
+                        items: <String>['Monthly', 'Per Night']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
                 ],
@@ -188,42 +193,39 @@ class _RequermentsPageState extends State<RequermentsPage> {
                   },
                 );
               }),*/
-          SizedBox(
-            width: 320,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                commonText("Deposite (if applicable)".tr, size: 16, isBold: true),
-                const SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 48,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffFCFCFC),
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                      color: const Color(0xffD7D7D7),
-                      width: 1.0,
-                    ),
-                  ),
-                  child: TextFormField(
-                    controller:  controller.depositeController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "150 K.D",
-                      hintStyle: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: AppColor.darkGreyColor,
-                      ),
-                      border: InputBorder.none,
-                    ),
-                    textAlign: TextAlign.center,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              commonText("Deposite (if applicable)".tr, size: 16, isBold: true),
+              const SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 48,
+                width: Get.width,
+                decoration: BoxDecoration(
+                  color: const Color(0xffFCFCFC),
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(
+                    color: const Color(0xffD7D7D7),
+                    width: 1.0,
                   ),
                 ),
-              ],
-            ),
+                child: TextFormField(
+                  controller:  controller.depositeController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "150 K.D",
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: AppColor.darkGreyColor,
+                    ),
+                    border: InputBorder.none,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
             /*  commonTextfieldWithTitle(
                 "Deposite (if applicable)".tr,

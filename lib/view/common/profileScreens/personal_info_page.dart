@@ -125,60 +125,57 @@ class EditProfile extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                SizedBox(
-                  width: 320,
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 45,
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFCFCFC),
-                          borderRadius: BorderRadius.circular(6.0),
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.0,
-                          ),
+                Row(
+                  children: [
+                    Container(
+                      height: 45,
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffFCFCFC),
+                        borderRadius: BorderRadius.circular(6.0),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
                         ),
-                        child: DropdownButtonHideUnderline(
-                          child: Obx(
-                            () => DropdownButton<String>(
-                              value: controller.selectedCountryCode.value,
-                              onChanged: (String? newValue) {
-                                controller.selectCountryCode(newValue!);
-                              },
-                              items: controller.countryCodes.keys
-                                  .map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Row(
-                                    children: [
-                                      Image.network(
-                                        controller.countryCodes[value]!,
-                                        width: 24,
-                                        height: 24,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      commonText(value),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: Obx(
+                          () => DropdownButton<String>(
+                            value: controller.selectedCountryCode.value,
+                            onChanged: (String? newValue) {
+                              controller.selectCountryCode(newValue!);
+                            },
+                            items: controller.countryCodes.keys
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Row(
+                                  children: [
+                                    Image.network(
+                                      controller.countryCodes[value]!,
+                                      width: 24,
+                                      height: 24,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    commonText(value),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: commonTextfield(controller.phoneController,
-                            hintText: "Phone Number".tr,
-                            keyboardType: TextInputType.number),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: commonTextfield(controller.phoneController,
+                          hintText: "Phone Number".tr,
+                          keyboardType: TextInputType.number),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -218,21 +215,18 @@ class EditProfile extends StatelessWidget {
             commonTextfieldWithTitle("Job".tr, controller.jobController,
                 hintText: "Enter your job title".tr),
             const SizedBox(height: 16),
-            SizedBox(
-              width: 320,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  commonText("Monthly Income".tr, size: 14, isBold: true),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomDropdown(
-                    controller: controller.monthlyIncomeController,
-                    hintText: "Choose your income bracket".tr,
-                  ),
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                commonText("Monthly Income".tr, size: 14, isBold: true),
+                const SizedBox(
+                  height: 5,
+                ),
+                CustomDropdown(
+                  controller: controller.monthlyIncomeController,
+                  hintText: "Choose your income bracket".tr,
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             commonTextfieldWithTitle("About me".tr, controller.aboutController,

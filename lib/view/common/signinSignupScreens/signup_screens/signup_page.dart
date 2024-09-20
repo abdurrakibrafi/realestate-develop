@@ -69,70 +69,67 @@ class SignupPage extends StatelessWidget {
                     height: 20,
                   ),
 
-                  SizedBox(
-                    width: 320,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        commonText("Phone Number".tr, size: 14),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 45,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 3),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.0),
-                                color: const Color(0xffFCFCFC),
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1.0,
-                                ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Phone Number".tr, size: 14),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 45,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 3),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              color: const Color(0xffFCFCFC),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
                               ),
-                              child: DropdownButtonHideUnderline(
-                                child: Obx(
-                                  () => DropdownButton<String>(
-                                    value: controller.selectedCountryCode.value,
-                                    onChanged: (String? newValue) {
-                                      controller.selectCountryCode(newValue!);
-                                    },
-                                    items: controller.countryCodes.keys
-                                        .map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Row(
-                                          children: [
-                                            Image.network(
-                                              controller.countryCodes[value]!,
-                                              width: 24,
-                                              height: 24,
-                                            ),
-                                            const SizedBox(width: 8),
-                                            commonText(value),
-                                          ],
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: Obx(
+                                () => DropdownButton<String>(
+                                  value: controller.selectedCountryCode.value,
+                                  onChanged: (String? newValue) {
+                                    controller.selectCountryCode(newValue!);
+                                  },
+                                  items: controller.countryCodes.keys
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Row(
+                                        children: [
+                                          Image.network(
+                                            controller.countryCodes[value]!,
+                                            width: 24,
+                                            height: 24,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          commonText(value),
+                                        ],
+                                      ),
+                                    );
+                                  }).toList(),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: commonTextfield(controller.phoneNumberController,
-                                  hintText: "Phone Number".tr,
-                                  keyboardType: TextInputType.number),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: commonTextfield(controller.phoneNumberController,
+                                hintText: "Phone Number".tr,
+                                keyboardType: TextInputType.number),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,

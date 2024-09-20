@@ -105,12 +105,9 @@ class AddResidenceSecondPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                width: 320,
-                child: CustomDropdown(
-                    controller: controller.governorateController,
-                    hintText: "Select Governorate"),
-              ),
+              CustomDropdown(
+                  controller: controller.governorateController,
+                  hintText: "Select Governorate"),
               const SizedBox(
                 height: 20,
               ),
@@ -124,70 +121,61 @@ class AddResidenceSecondPage extends StatelessWidget {
                       areas.isNotEmpty ? areas.first : "";
                 }
 
-                return SizedBox(
-                  width: 320,
-                  child: CustomDropdown(
-                      controller: controller.areaController,
-                      hintText: "Select Area"),
-                );
+                return CustomDropdown(
+                    controller: controller.areaController,
+                    hintText: "Select Area");
               }),
               commonTextfieldWithTitle(
                 "",
                 controller.houseController,
                 hintText: "Building Number/No.",
               ),
-              SizedBox(
-                width: 320,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: commonTextfieldWithTitle(
-                        "",
-                        controller.apartmentController,
-                        hintText: "Apartment No.",
-                      ),
+              Row(
+                children: [
+                  Expanded(
+                    child: commonTextfieldWithTitle(
+                      "",
+                      controller.apartmentController,
+                      hintText: "Apartment No.",
                     ),
-                    const SizedBox(
-                      width: 8,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: commonTextfieldWithTitle(
+                      "",
+                      controller.floorController,
+                      hintText: "Floor",
                     ),
-                    Expanded(
-                      child: commonTextfieldWithTitle(
-                        "",
-                        controller.floorController,
-                        hintText: "Floor",
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
               commonTextfieldWithTitle(
                 "",
                 controller.streetController,
                 hintText: "Street Name/Number",
               ),
-              SizedBox(
-                width: 320,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: commonTextfieldWithTitle(
-                        "",
-                        controller.blockController,
-                        hintText: "Block No.",
-                      ),
+              Row(
+                children: [
+                  Expanded(
+                    child: commonTextfieldWithTitle(
+                      "",
+                      controller.blockController,
+                      hintText: "Block No.",
                     ),
-                    const SizedBox(
-                      width: 8,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: commonTextfieldWithTitle(
+                      "",
+                      controller.avenueController,
+                      hintText: "Avenue (optional)",
                     ),
-                    Expanded(
-                      child: commonTextfieldWithTitle(
-                        "",
-                        controller.avenueController,
-                        hintText: "Avenue (optional)",
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
               commonTextfieldWithTitle(
                 "",
