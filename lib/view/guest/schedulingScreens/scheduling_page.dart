@@ -93,27 +93,29 @@ class _SchedulingPageState extends State<SchedulingPage> {
               ],
             ),
             const SizedBox(height: 20),
-            Obx(() => commonButton("Send Request".tr,isLoading: controller.loading.value,
-              onTap: () {
-                controller.api(
-                    widget.residence,
-                    widget.propertyName,
-                    widget.rating,
-                    widget.address,
-                    widget.price,
-                    DateFormat('yyyy-MM-dd')
-                        .format(controller.selectedValue.value),
-                    DateFormat('yyyy-MM-dd').format(
-                        controller.selectedValue.value.add(Duration(
-                            days: controller.totalDuration.value))),
-                    controller.totalDuration.value.toString(),
-                    controller.adultCount.value.toString(),
-                    controller.childCount.value.toString(),
-                    widget.discount,
-                    controller.discountValue.value.toString(),
-                    totalAmount().toString()
-                );
-              },
+            Obx(() => Center(
+              child: commonButton("Send Request".tr,isLoading: controller.loading.value,
+                onTap: () {
+                  controller.api(
+                      widget.residence,
+                      widget.propertyName,
+                      widget.rating,
+                      widget.address,
+                      widget.price,
+                      DateFormat('yyyy-MM-dd')
+                          .format(controller.selectedValue.value),
+                      DateFormat('yyyy-MM-dd').format(
+                          controller.selectedValue.value.add(Duration(
+                              days: controller.totalDuration.value))),
+                      controller.totalDuration.value.toString(),
+                      controller.adultCount.value.toString(),
+                      controller.childCount.value.toString(),
+                      widget.discount,
+                      controller.discountValue.value.toString(),
+                      totalAmount().toString()
+                  );
+                },
+              ),
             ))
           ],
         ),

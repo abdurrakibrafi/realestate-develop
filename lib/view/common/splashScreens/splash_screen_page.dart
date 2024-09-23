@@ -15,9 +15,9 @@ class SplashScreenPage extends StatelessWidget {
     final LanguageController controller = Get.put(LanguageController());
     final Map<String, String> countryCodes = {
       'English':
-          'https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg',
+          'assets/icons/eng.png',
       'العربية':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_Kuwait.svg/640px-Flag_of_Kuwait.svg.png'
+          'assets/icons/arb.png'
     };
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
@@ -86,10 +86,11 @@ class SplashScreenPage extends StatelessWidget {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(20),
-                                        child: Image.network(
+                                        child: Image.asset(
                                           countryCodes[value]!,
-                                          width: 24,
-                                          height: 24,
+                                          // width: 24,
+                                          // height: 24,
+                                          scale: 4,
                                           fit: BoxFit.cover,
                                         ),
                                       ),

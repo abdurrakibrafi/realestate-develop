@@ -62,6 +62,13 @@ class SignupPage extends StatelessWidget {
                     height: 20,
                   ),
                   commonTextfieldWithTitle(
+                      "Full Name(in Arabic)".tr, controller.fullNameArabicController,
+                      hintText: "Enter your arabic name".tr,
+                      keyboardType: TextInputType.text),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  commonTextfieldWithTitle(
                       "Email".tr, controller.emailController,
                       hintText: "Enter your email".tr,
                       keyboardType: TextInputType.emailAddress),

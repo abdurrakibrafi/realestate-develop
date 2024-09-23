@@ -60,7 +60,7 @@ class _HomePageV2State extends State<HomePageV2> {
           await  profileController.fetchData();
           await residencesController.fetchData();
           await addResidenceController.getCategory();
-         print("token: ${await preference.getUser()}");
+         print("token:::: ${await preference.getUser()}");
 
         },
         child: Scaffold(

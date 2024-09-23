@@ -25,6 +25,7 @@ class EditProfilePageController extends GetxController {
   final _api = UpdateProfileRepository();
 
   late TextEditingController nameController;
+  late TextEditingController nameArabicController;
   late TextEditingController emailController;
   late TextEditingController phoneController;
   late TextEditingController locationController;
@@ -41,6 +42,7 @@ class EditProfilePageController extends GetxController {
 
   EditProfilePageController(Data userData) {
     nameController = TextEditingController(text: userData.name ?? '');
+    nameArabicController = TextEditingController(text: userData.nameArabic ?? '');
     emailController = TextEditingController(text: userData.email ?? '');
     phoneController = TextEditingController(text: userData.phoneNumber ?? '');
     locationController = TextEditingController(text: userData.address ?? '');
@@ -104,6 +106,7 @@ class EditProfilePageController extends GetxController {
 
     final formData = FormData.fromMap({
       "name": nameController.value.text,
+      "nameArabic": nameArabicController.value.text,
       "job": jobController.value.text,
       "monthlyIncome": monthlyIncomeController.selected,
       "about": aboutController.value.text,
@@ -111,6 +114,7 @@ class EditProfilePageController extends GetxController {
     });
 
     log(formData.fields.toString());
+    log(formData.fields.toString() + "::::::::::::::::::::::::::::::::");
     log("files ${formData.files.toString()}");
 
     try {

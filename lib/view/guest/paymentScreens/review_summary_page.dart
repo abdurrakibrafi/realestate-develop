@@ -11,6 +11,7 @@ import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
 import 'package:real_estate_management/service/local_storage.dart';
 import 'package:real_estate_management/viewModel/controllers/bookingControllers/booking_request_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../res/components/common_button.dart';
 
@@ -31,6 +32,8 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
 
 
   final PaymentRequestController paymentRequestController = Get.put(PaymentRequestController());
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -222,39 +225,6 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                         bookingId: widget.data.id,
                         BookingResidence: "BookingResidence"
                     );
-                  /*  controller.api(
-                        widget.residence,
-                        widget.propertyName,
-                        widget.rating,
-                        widget.address,
-                        widget.price,
-                        widget.checkIn,
-                        widget.checkOut,
-                        widget.duration,
-                        widget.adult,
-                        widget.child,
-                        widget.discount,
-                        widget.discountAmount,
-                        widget.totalAmount);*/
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => PaymentPage(
-                    //             isHost: false,
-                    //             isGust: true,
-                    //           )),
-                    // );
-
-                  /*  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PaymentPage(
-                                isHost: false,
-                                isGust: true,
-                              )),
-                    );*/
-                   // paymentRequestController.paymentRequest(bookingId: "66c1dac4ae5277ac27023752", BookingResidence: "BookingResidence");
-
                   },
                 ): SizedBox(),
 
@@ -267,6 +237,13 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                     );
                   },
                 ): SizedBox(),
+
+                widget.data.status.toString() == "approved" && widget.data.isPaid == true?  commonButton(
+                  "View Contract",
+                  onTap: () {
+                    _launchUrl(Uri.parse("https://real-state-admin.s3.eu-north-1.amazonaws.com/images/messages/5551981727006947061"));
+                  },
+                ): SizedBox(),
                 const SizedBox(
                   height: 10,
                 )
@@ -277,6 +254,12 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
       ),
     );
   }
+
+  Future<void> _launchUrl(_url) async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+    }
 
   Widget commonTextRow(String startText, String endText,
       {Color color = AppColor.blackColor}) {
@@ -291,4 +274,12 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
       ),
     );
   }
+/*  void _launchURL(url) async {
+ //   final url = 'https://real-state-admin.s3.eu-north-1.amazonaws.com/images/messages/5551981727006947061';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }*/
 }

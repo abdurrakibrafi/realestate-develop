@@ -1,11 +1,13 @@
 import 'package:real_estate_management/viewModel/controllers/user_preference/user_preference_view_model.dart';
 
 class AppUrl {
-/*  static const String baseUrl = "http://115.127.156.14:9005/api/v1";
-  static const socketUrl = "http://115.127.156.14:9001";  */
+/*
+  static const String baseUrl = "http://115.127.156.14:9005/api/v1";
+  static const socketUrl = "http://115.127.156.14:9001";
 
-  /*static const String baseUrl = "http://159.223.184.53:9005/api/v1";
-  static const socketUrl = "http://159.223.184.53:9001";*/
+  static const String baseUrl = "http://159.223.184.53:9005/api/v1";
+  static const socketUrl = "http://159.223.184.53:9001";
+*/
 
   static const String baseUrl = "http://estate.mamnon.de/api/v1";
   static const socketUrl = "http://159.223.184.53:9001";

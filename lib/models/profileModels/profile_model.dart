@@ -30,6 +30,7 @@ class Data {
   String? sId;
   String? username;
   String? name;
+  String? nameArabic;
   String? email;
   String? image;
   String? phoneNumber;
@@ -59,6 +60,7 @@ class Data {
       this.sId,
       this.username,
       this.name,
+      this.nameArabic,
       this.email,
       this.image,
       this.phoneNumber,
@@ -90,6 +92,7 @@ class Data {
     sId = json['_id'];
     username = json['username'];
     name = json['name'];
+    nameArabic = json['nameArabic'];
     email = json['email'];
     image = json['image'];
     phoneNumber = json['phoneNumber'];
@@ -124,6 +127,7 @@ class Data {
     data['_id'] = sId;
     data['username'] = username;
     data['name'] = name;
+    data['nameArabic'] = nameArabic;
     data['email'] = email;
     data['image'] = image;
     data['phoneNumber'] = phoneNumber;

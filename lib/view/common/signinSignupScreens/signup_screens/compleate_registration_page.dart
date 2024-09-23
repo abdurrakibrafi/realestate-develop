@@ -99,77 +99,65 @@ class _CompleateRegistrationPageState extends State<CompleateRegistrationPage> {
                   const SizedBox(
                     height: 40,
                   ),
-                  SizedBox(
-                    width: 320,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        commonText("Nationality".tr, size: 14, isBold: true),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        CustomDropdown(
-                            controller: controller.nationalityController,
-                            hintText: "Select your nationality".tr),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Nationality".tr, size: 14, isBold: true),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomDropdown(
+                          controller: controller.nationalityController,
+                          hintText: "Select your nationality".tr),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    width: 320,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        commonText("Gender".tr, size: 14, isBold: true),
-                        buildGenderRadioButtons(),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Gender".tr, size: 14, isBold: true),
+                      buildGenderRadioButtons(),
+                    ],
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    width: 320,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        commonText("Marital Status".tr, size: 14, isBold: true),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        CustomDropdown(
-                            controller: controller.maritalStatusController,
-                            hintText: "Select your marital status".tr),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Marital Status".tr, size: 14, isBold: true),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomDropdown(
+                          controller: controller.maritalStatusController,
+                          hintText: "Select your marital status".tr),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    width: 320,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        commonText("Date of Birth".tr, size: 14, isBold: true),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            controller.selectDate(context);
-                          },
-                          child: Obx(() {
-                            return commonTextfield(
-                                controller.dateOfBirthController.value,
-                                isEnable: false,
-                                hintText: "YYYY-MM-DD".tr);
-                          }),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Date of Birth".tr, size: 14, isBold: true),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.selectDate(context);
+                        },
+                        child: Obx(() {
+                          return commonTextfield(
+                              controller.dateOfBirthController.value,
+                              isEnable: false,
+                              hintText: "YYYY-MM-DD".tr);
+                        }),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
@@ -187,23 +175,20 @@ class _CompleateRegistrationPageState extends State<CompleateRegistrationPage> {
                         ),
                   widget.role == "Landlord"
                       ? SizedBox()
-                      : SizedBox(
-                          width: 320,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              commonText("Income Bracket".tr,
-                                  size: 14, isBold: true),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              CustomDropdown(
-                                controller: controller.monthlyIncomeController,
-                                hintText: "Choose your income bracket".tr,
-                              ),
-                            ],
+                      : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          commonText("Income Bracket".tr,
+                              size: 14, isBold: true),
+                          const SizedBox(
+                            height: 5,
                           ),
-                        ),
+                          CustomDropdown(
+                            controller: controller.monthlyIncomeController,
+                            hintText: "Choose your income bracket".tr,
+                          ),
+                        ],
+                      ),
                   widget.role == "Landlord"
                       ? SizedBox()
                       : const SizedBox(

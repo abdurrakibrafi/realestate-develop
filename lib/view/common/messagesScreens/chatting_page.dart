@@ -95,11 +95,6 @@ class _ChattingPageState extends State<ChattingPage> {
     });
   }
   void _handleIncomingMessage(dynamic data) {
-    /*if (data is Map<String, dynamic> && data.containsKey('id')) {
-      socketService.messageList.add(data);
-      print(socketService.messageList.length.toString()  + " $data    this is message list demo length");
-
-    }*/
     socketService.messageList.add(data);
     print("${socketService.messageList.length}     this is message list demo length");
     _scrollToEnd();

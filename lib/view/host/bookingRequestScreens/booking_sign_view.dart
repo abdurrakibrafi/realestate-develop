@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:real_estate_management/viewModel/controllers/profileControllers/profile_controller.dart';
 import 'package:signature/signature.dart';
 import '../../../controller/booking/booking_sign_controller.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
@@ -24,6 +25,7 @@ class BookingSignView extends StatefulWidget {
 
 class _BookingSignViewState extends State<BookingSignView> {
   final BookingSignController controller = Get.put(BookingSignController());
+  final ProfileController profileController = Get.put(ProfileController());
   final TextEditingController civilTextController = TextEditingController();
   final SignatureController _signatureController = SignatureController(
     penStrokeWidth: 5,
@@ -72,86 +74,90 @@ class _BookingSignViewState extends State<BookingSignView> {
                   color: Colors.black,
                   textAlign: TextAlign.center),
               SizedBox(height: 10),
-              Divider(color: Colors.grey.withOpacity(0.2)),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  commonText("Required Documents".tr,
-                      size: 13, isBold: true, color: Colors.black),
-                  GestureDetector(
-                    onTap: () {
-                      controller.pickImages();
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColor.primaryColor),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Upload".tr,
-                          style: TextStyle(
-                              color: AppColor.primaryColor, fontSize: 10),
+              profileController.profileData.value?.role.toString() == "user"?   Column(
+              children: [
+                Divider(color: Colors.grey.withOpacity(0.2)),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    commonText("Required Documents".tr,
+                        size: 13, isBold: true, color: Colors.black),
+                    GestureDetector(
+                      onTap: () {
+                        controller.pickImages();
+                      },
+                      child: Container(
+                        height: 20,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.primaryColor),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Upload".tr,
+                            style: TextStyle(
+                                color: AppColor.primaryColor, fontSize: 10),
+                          ),
                         ),
                       ),
                     ),
+                  ],
+                ),
+                // SizedBox(height: 10),
+                Obx(() => controller.pickedImages.isNotEmpty
+                    ? GridView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 10.0),
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8.0,
                   ),
-                ],
-              ),
-              // SizedBox(height: 10),
-              Obx(() => controller.pickedImages.isNotEmpty
-                  ? GridView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(top: 10.0),
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 8.0,
-                      ),
-                      itemCount: controller.pickedImages.length,
-                      itemBuilder: (context, index) {
-                        return Image.file(
-                          controller.pickedImages[index],
-                          fit: BoxFit.cover,
-                        );
-                      },
-                    )
-                  : SizedBox()),
-              Obx(
-                () => controller.pickedImages.isNotEmpty
-                    ? Align(
-                        alignment: Alignment.bottomRight,
-                        child: GestureDetector(
-                          onTap: () => controller.pickedImages.clear(),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: AppColor.primaryColor),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Clear".tr,
-                                  style: TextStyle(
-                                      color: AppColor.primaryColor,
-                                      fontSize: 10),
-                                ),
-                              ),
+                  itemCount: controller.pickedImages.length,
+                  itemBuilder: (context, index) {
+                    return Image.file(
+                      controller.pickedImages[index],
+                      fit: BoxFit.cover,
+                    );
+                  },
+                )
+                    : SizedBox()),
+                Obx(
+                      () => controller.pickedImages.isNotEmpty
+                      ? Align(
+                    alignment: Alignment.bottomRight,
+                    child: GestureDetector(
+                      onTap: () => controller.pickedImages.clear(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Container(
+                          height: 20,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(color: AppColor.primaryColor),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Clear".tr,
+                              style: TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontSize: 10),
                             ),
                           ),
                         ),
-                      )
-                    : SizedBox(),
-              ),
+                      ),
+                    ),
+                  )
+                      : SizedBox(),
+                ),
+              ],
+            ): SizedBox(),
 
               SizedBox(height: 10),
               Divider(color: Colors.grey.withOpacity(0.2)),
@@ -302,50 +308,46 @@ class _BookingSignViewState extends State<BookingSignView> {
               ),
               SizedBox(height: 20),
               Obx(
-                () => commonButton(
-                  "Confirm".tr,
-                  onTap: () {
-                    if (LocalStorage.getData(key: "role") == "user") {
-                      if (controller.pickedImages.isNotEmpty) {
-                        if (isChecked.value) {
-                          controller.submitTenantSignature(widget.bookingId,
-                              _signatureController, civilTextController.text);
+                () => Center(
+                  child: commonButton(
+                    "Confirm".tr,
+                    onTap: () {
+                      if ( profileController.profileData.value?.role.toString() == "user") {
+                        if (controller.pickedImages.isNotEmpty) {
+                          if (isChecked.value) {
+                            controller.submitTenantSignature(widget.bookingId,
+                                _signatureController, civilTextController.text);
+                          } else {
+                            Get.snackbar(
+                              "Error",
+                              "Please accept the terms and conditions.",
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          }
                         } else {
                           Get.snackbar(
                             "Error",
-                            "Please accept the terms and conditions.",
+                            "Please add required documents",
                             snackPosition: SnackPosition.BOTTOM,
                           );
                         }
                       } else {
-                        Get.snackbar(
-                          "Error",
-                          "Please add required documents",
-                          snackPosition: SnackPosition.BOTTOM,
-                        );
+
+                          if (isChecked.value) {
+                            controller.submitSignature(widget.bookingId,
+                                _signatureController, civilTextController.text);
+                          } else {
+                            Get.snackbar(
+                              "Error",
+                              "Please accept the terms and conditions.",
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          }
+
                       }
-                    } else {
-                      if (controller.pickedImages.isNotEmpty) {
-                        if (isChecked.value) {
-                          controller.submitSignature(widget.bookingId,
-                              _signatureController, civilTextController.text);
-                        } else {
-                          Get.snackbar(
-                            "Error",
-                            "Please accept the terms and conditions.",
-                            snackPosition: SnackPosition.BOTTOM,
-                          );
-                        }
-                      } else {
-                        Get.snackbar(
-                          "Error",
-                          "Please add required documents",
-                          snackPosition: SnackPosition.BOTTOM,
-                        );
-                      }
-                    }
-                  },
-                  isLoading: controller.isLoading.value,
+                    },
+                    isLoading: controller.isLoading.value,
+                  ),
                 ),
               ),
             ],

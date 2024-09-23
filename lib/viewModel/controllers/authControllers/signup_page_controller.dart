@@ -39,6 +39,7 @@ class SignupPageController extends GetxController {
   var selectedRole = 'Tenant'.obs;
   TextEditingController usernameController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
+  TextEditingController fullNameArabicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -169,6 +170,7 @@ class SignupPageController extends GetxController {
       Map<String, dynamic> data = {
         "username": usernameController.text,
         "name": fullNameController.text,
+        "nameArabic": fullNameArabicController.text,
         "email": emailController.text,
         "gender": gender.value,
         "dateOfBirth": dateOfBirthController.value.text,

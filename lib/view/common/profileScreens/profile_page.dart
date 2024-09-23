@@ -50,6 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
     },
   );
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,12 +184,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: 10,
                 ),
                 CircleAvatar(
-                  backgroundImage: NetworkImage(profileController
+                  backgroundImage: AssetImage(profileController
                               .profileData.value!.nationality! ==
                           "Kuwait"
-                      ? "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_Kuwait.svg/640px-Flag_of_Kuwait.svg.png"
-                      : "https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg"),
-                )
+                      ? 'assets/icons/arb.png'
+                      : 'assets/icons/eng.png',
+                ))
               ],
             ),
             const SizedBox(height: 10),
