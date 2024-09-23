@@ -149,7 +149,7 @@ class BookingSignController extends GetxController {
           final responseData = json.decode(responseBody);
           print('Success: $responseData');
           await myBookedController.getBookingRequest();
-          Get.offAll(() => BookingSuccessPage());
+          Get.offAll(() => BookingSuccessPage(BookingId: responseData['data']['booking'],));
           Get.snackbar("Success", "Signing successfully done.");
         } else {
           print('Failed with status code: ${response.statusCode}');

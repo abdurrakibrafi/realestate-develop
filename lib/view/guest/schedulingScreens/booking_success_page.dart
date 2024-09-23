@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:real_estate_management/controller/booking/contract_generate_controller.dart';
 import 'package:real_estate_management/res/components/common_button.dart';
 import 'package:real_estate_management/res/components/common_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../guest_root_screen.dart';
 
 class BookingSuccessPage extends StatelessWidget {
-  const BookingSuccessPage({super.key});
+  final String? BookingId;
+   BookingSuccessPage({super.key,    this.BookingId});
+
+  final ContractGenerateController contractGenerateController = Get.put(ContractGenerateController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +33,12 @@ class BookingSuccessPage extends StatelessWidget {
             commonText("The Mosta’ajer App Team",size: 15,isBold: true),
             SizedBox(height: 160,),
             commonButton("Go to home".tr,onTap: () =>  Get.offAll(() => GuestRootScreen())),
+            SizedBox(height: 24,),
+
+            BookingId == "" || BookingId == null? SizedBox() : Obx(() => contractGenerateController.isLoading.value == true? Center(child: CircularProgressIndicator(),) : commonButton("View Contract".tr,onTap: () {
+              contractGenerateController.getContractGenerate(bookingId: BookingId!);
+            }),),
+
             SizedBox(height: 24,),
           ],
         ),

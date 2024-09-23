@@ -102,7 +102,7 @@ class _HomePageV2State extends State<HomePageV2> {
                           ),
                         )
                             : Image.network(
-                          profileController.profileData.value!.image.toString(),
+                        "${profileController.profileData.value?.image}",
                           fit: BoxFit.cover,
                           width: 40,
                           height: 40,

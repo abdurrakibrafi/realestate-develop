@@ -34,6 +34,7 @@ class AppUrl {
   static const String sendMessage = "$baseUrl/messages/send-messages";
 
   static const String payment = "$baseUrl/payments/initiate";
+  static   contractGenerate({required bookingId}) => "$baseUrl/bookings/generate-contract/$bookingId";
   static const String categories = "$baseUrl/categories";
   static const String bockingSignLandlord = "$baseUrl/booking-documents";
   static chatDetails(chatId) =>

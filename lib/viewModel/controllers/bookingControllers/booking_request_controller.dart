@@ -78,7 +78,7 @@ class SchedulingController extends GetxController {
       if (model.success == true) {
         Utils.snackBar("Booking Successful", model.message!);
         loading.value = false;
-        Get.offAll(() => BookingSuccessPage());
+        Get.offAll(() => BookingSuccessPage(BookingId: '',));
 
       } else {
         loading.value = false;

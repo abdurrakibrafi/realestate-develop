@@ -222,7 +222,7 @@ class _ProfilePageState extends State<ProfilePage> {
             );
           }),
           Visibility(
-            visible: profileController.profileData.value!.role! == "landlord",
+            visible: profileController.profileData.value?.role.toString() == "landlord",
             child: Column(
               children: [
 

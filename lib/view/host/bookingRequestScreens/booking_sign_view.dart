@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:real_estate_management/viewModel/controllers/profileControllers/profile_controller.dart';
 import 'package:signature/signature.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../controller/booking/booking_sign_controller.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/components/common_button.dart';
@@ -37,6 +38,12 @@ class _BookingSignViewState extends State<BookingSignView> {
 
   void toggleCheckbox() {
     isChecked.value = !isChecked.value;
+  }
+
+  Future<void> _launchUrl(_url) async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 
   @override
@@ -160,7 +167,7 @@ class _BookingSignViewState extends State<BookingSignView> {
             ): SizedBox(),
 
               SizedBox(height: 10),
-              Divider(color: Colors.grey.withOpacity(0.2)),
+             Divider(color: Colors.grey.withOpacity(0.2)),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,7 +175,9 @@ class _BookingSignViewState extends State<BookingSignView> {
                   commonText("View Contract".tr,
                       size: 13, isBold: true, color: Colors.black),
                   GestureDetector(
-                    onTap: () => Get.back(),
+                    onTap: () {
+                      _launchUrl(Uri.parse("https://drive.google.com/file/d/1bpxL-0wSFg8xTGdMa-Xmb6NALHnMQC0n/view?usp=sharing"));
+                    },
                     child: Container(
                       height: 20,
                       width: 50,

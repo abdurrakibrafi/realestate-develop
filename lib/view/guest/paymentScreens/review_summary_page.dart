@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:real_estate_management/controller/booking/contract_generate_controller.dart';
 import 'package:real_estate_management/controller/booking/my_booked_controller.dart';
 import 'package:real_estate_management/models/bookingModels/my_booked_model.dart';
 import 'package:real_estate_management/models/bookingModels/my_booking_model.dart';
@@ -32,6 +33,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
 
 
   final PaymentRequestController paymentRequestController = Get.put(PaymentRequestController());
+  final ContractGenerateController contractGenerateController = Get.put(ContractGenerateController());
 
 
 
@@ -238,12 +240,13 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                   },
                 ): SizedBox(),
 
-                widget.data.status.toString() == "approved" && widget.data.isPaid == true?  commonButton(
-                  "View Contract",
+                widget.data.status.toString() == "approved" && widget.data.isPaid == true? Obx(() => contractGenerateController.isLoading.value == true?  Center(child: CircularProgressIndicator(),) : commonButton(
+                  "View Contract".tr,
                   onTap: () {
-                    _launchUrl(Uri.parse("https://real-state-admin.s3.eu-north-1.amazonaws.com/images/messages/5551981727006947061"));
+                    // _launchUrl(Uri.parse("https://real-state-admin.s3.eu-north-1.amazonaws.com/images/messages/5551981727006947061"));
+                    contractGenerateController.getContractGenerate(bookingId: widget.data.id.toString());
                   },
-                ): SizedBox(),
+                )) : SizedBox(),
                 const SizedBox(
                   height: 10,
                 )
@@ -255,11 +258,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
     );
   }
 
-  Future<void> _launchUrl(_url) async {
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
-    }
-    }
+
 
   Widget commonTextRow(String startText, String endText,
       {Color color = AppColor.blackColor}) {

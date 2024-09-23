@@ -28,9 +28,13 @@ class NewBookingController extends GetxController {
       UserPreference userPreference = UserPreference();
       String userId = await userPreference.getId();
 
+      String token = await userPreference.getUser();
+
 
       var headers = {
         'Content-Type': 'application/json',
+        "Authorization": "Bearer $token",
+
       };
 
       dynamic responseBody = await BaseClient.handleResponse(
@@ -52,7 +56,7 @@ class NewBookingController extends GetxController {
       }
     } catch (e) {
       // kSnackBar(message: e.toString(), bgColor: failedColor);
-      print(e);
+      print(e.toString() + "555555555");
     } finally {
       isLoading(false);
     }
