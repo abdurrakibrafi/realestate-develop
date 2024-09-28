@@ -195,60 +195,54 @@ class _CompleateRegistrationPageState extends State<CompleateRegistrationPage> {
                           height: 20,
                         ),
                   widget.role == "Landlord"
-                      ? SizedBox(
-                          width: 320,
-                          child: Column(
+                      ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          commonText("About You".tr,
+                              size: 14, isBold: true),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              commonText("About You".tr,
-                                  size: 14, isBold: true),
                               const SizedBox(
                                 height: 5,
                               ),
                               Container(
-                                width: 320,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 5,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffFCFCFC),
+                                  borderRadius:
+                                      BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xffD7D7D7),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: TextField(
+                                  controller: aboutYouTextController,
+                                  keyboardType: TextInputType.text,
+                                  maxLines: 5,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: AppColor.blackColor,
+                                  ),
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        const EdgeInsets.all(12.0),
+                                    hintText: "Tell us about yourself".tr,
+                                    hintStyle: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      color: AppColor.darkGreyColor,
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xffFCFCFC),
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        border: Border.all(
-                                          color: Color(0xffD7D7D7),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      child: TextField(
-                                        controller: aboutYouTextController,
-                                        keyboardType: TextInputType.text,
-                                        maxLines: 5,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          color: AppColor.blackColor,
-                                        ),
-                                        decoration: InputDecoration(
-                                          contentPadding:
-                                              const EdgeInsets.all(12.0),
-                                          hintText: "Tell us about yourself".tr,
-                                          hintStyle: GoogleFonts.poppins(
-                                            fontSize: 12,
-                                            color: AppColor.darkGreyColor,
-                                          ),
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                    border: InputBorder.none,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        )
+                        ],
+                      )
                       : SizedBox(),
                   const SizedBox(
                     height: 30,

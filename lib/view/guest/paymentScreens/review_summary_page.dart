@@ -193,7 +193,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                       "Discount -${widget.discount}%".tr, widget.discountAmount,
                       color: Colors.red),
                 ),*/
-                commonTextRow("Service Fee".tr, "10 ${"K.D".tr}"),
+                commonTextRow("Contract Fee".tr, "10 ${"K.D".tr}"),
                 const SizedBox(
                   height: 20,
                 ),
