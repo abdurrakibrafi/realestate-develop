@@ -37,6 +37,7 @@ class AdsCategoryController extends GetxController {
             []);
 
         categoryList.assignAll(categories);
+        print("all ads categoryList:::::: $categoryList");
 
         selectedItem.value = "All";
 

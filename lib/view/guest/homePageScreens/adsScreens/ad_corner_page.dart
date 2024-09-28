@@ -224,7 +224,7 @@ class _AdsCornerPageState extends State<AdsCornerPage> {
                     width: 2,
                   ),
                 commonText(
-                  item,
+                  item.tr,
                   isBold: true,
                   color: item == categoryController.selectedItem.value
                       ? Colors.white

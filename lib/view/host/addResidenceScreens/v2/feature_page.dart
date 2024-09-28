@@ -198,7 +198,7 @@ class FeatureItem extends StatelessWidget {
                     Expanded(
                         child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: commonText(feature["label"]!,
+                            child: commonText(feature["label"]!.tr,
                                 color: isSelected
                                     ? AppColor.primaryColor
                                     : Colors.black,

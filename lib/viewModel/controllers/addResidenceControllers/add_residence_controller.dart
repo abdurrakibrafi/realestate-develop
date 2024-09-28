@@ -218,22 +218,22 @@ class AddResidenceController extends GetxController {
   ].obs;
 
   final RxList<Map<String, String>> features = [
-    {"icon": "Elevator", "label": "Elevator"},
-    {"icon": "Security", "label": "Security"},
-    {"icon": "Parking", "label": "Parking"},
-    {"icon": "Furnished", "label": "Furnished"},
-    {"icon": "WiFi", "label": "WiFi"},
-    {"icon": "Pool", "label": "Pool"},
-    {"icon": "Maids Room", "label": "Maids Room"},
-    {"icon": "Central A.C", "label": "Central A.C"},
-    {"icon": "Jacuzzi", "label": "Jacuzzi"},
-    {"icon": "Driver Room", "label": "Driver Room"},
-    {"icon": "Dewaniya", "label": "Dewaniya"},
-    {"icon": "Sea View", "label": "Sea View"},
-    {"icon": "Kitchenware", "label": "Kitchenware"},
-    {"icon": "Pet Friendly", "label": "Pet Friendly"},
-    {"icon": "Balcony", "label": "Balcony"},
-    {"icon": "Gym", "label": "Gym"},
+    {"icon": "Elevator", "label": "elevator"},
+    {"icon": "Security", "label": "security"},
+    {"icon": "Parking", "label": "parking"},
+    {"icon": "Furnished", "label": "furnished"},
+    {"icon": "WiFi", "label": "wifi"},
+    {"icon": "Pool", "label": "pool"},
+    {"icon": "Maids Room", "label": "maids_room"},
+    {"icon": "Central A.C", "label": "central_ac"},
+    {"icon": "Jacuzzi", "label": "jacuzzi"},
+    {"icon": "Driver Room", "label": "driver_room"},
+    {"icon": "Dewaniya", "label": "dewaniya"},
+    {"icon": "Sea View", "label": "sea_view"},
+    {"icon": "Kitchenware", "label": "kitchenware"},
+    {"icon": "Pet Friendly", "label": "pet_friendly"},
+    {"icon": "Balcony", "label": "balcony"},
+    {"icon": "Gym", "label": "gym"}
   ].obs;
   RxSet<String> selectedFeatures = <String>{}.obs;
 

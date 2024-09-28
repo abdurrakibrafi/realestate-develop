@@ -155,7 +155,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                                     color: AppColor.primaryColor,
                                     isBold: true,
                                     size: 13),
-                                commonText(' K.D/Month'.tr,
+                                commonText(' K.D /Month'.tr,
                                     color: AppColor.blackColor, size: 13),
                               ],
                             ),
@@ -169,7 +169,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                   height: 20,
                 ),
                 commonTextRow("Request Date".tr, DateFormat('dd MMM, yyyy | hh:mm a').format(DateTime.parse(widget.data.createdAt.toString()))),
-                commonTextRow("Check-in".tr,
+                commonTextRow("Check-In".tr,
                     DateFormat('dd MMM, yyyy').format(DateTime.parse(widget.data.startDate.toString()))),
                 commonTextRow("Check-Out".tr, DateFormat('dd MMM, yyyy').format(DateTime.parse(widget.data.endDate.toString()))),
               //  commonTextRow("Duration".tr, "${widget.duration} days"),
@@ -178,7 +178,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                   height: 10,
                 ),
                 commonTextRow("Number of Guests".tr,
-                    "${widget.data.guest?.adult} Adults • ${widget.data.guest?.child} Child"),
+                    "${widget.data.guest?.adult} ${"Adult".tr} • ${widget.data.guest?.child} ${"Child".tr}"),
                 const SizedBox(
                   height: 10,
                 ),
@@ -186,14 +186,14 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                commonTextRow("Rent".tr, "${widget.data.totalPrice.toString()} K.D"),
+                commonTextRow("Rent".tr, "${widget.data.totalPrice.toString()} ${"K.D".tr}"),
                /* Visibility(
                   visible: widget.discountAmount != "0.0",
                   child: commonTextRow(
                       "Discount -${widget.discount}%".tr, widget.discountAmount,
                       color: Colors.red),
                 ),*/
-                commonTextRow("Service Fee".tr, "10 K.D"),
+                commonTextRow("Service Fee".tr, "10 ${"K.D".tr}"),
                 const SizedBox(
                   height: 20,
                 ),
@@ -211,7 +211,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                       children: [
                         commonText("Amount Payable".tr,
                             color: AppColor.blackColor, isBold: true),
-                        commonText("10.000 K.D",
+                        commonText("10.000 ${"K.D".tr}",
                             color: AppColor.primaryColor, isBold: true),
                       ],
                     ),
@@ -221,7 +221,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                   height: 40,
                 ),
                 widget.data.status.toString() == "pending"?  commonBorderButton(
-                  "Waiting for landlord approve",
+                  "Waiting for landlord approve".tr,
                   onTap: () {
                     paymentRequestController.paymentRequest(
                         bookingId: widget.data.id,
@@ -231,7 +231,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                 ): SizedBox(),
 
                 widget.data.status.toString() == "approved" && widget.data.isPaid == false?  commonButton(
-                  "Pay Now",
+                  "Pay Now".tr,
                   onTap: () {
                     paymentRequestController.paymentRequest(
                         bookingId: widget.data.id,

@@ -64,7 +64,7 @@ Widget customStartDrawer(BuildContext context, String name) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    commonText("Welcome Back!".tr, size: 14, isBold: true),
+                    commonText("Welcome!".tr, size: 14, isBold: true),
                     commonText(name.tr, size: 12),
                   ],
                 ),

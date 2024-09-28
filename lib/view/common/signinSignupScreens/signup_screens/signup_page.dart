@@ -156,8 +156,7 @@ class SignupPage extends StatelessWidget {
                         child: Obx(() => CheckboxListTile(
                               activeColor: AppColor.primaryColor,
                               title: commonText(
-                                  "I have read and accepted the rules & conditions"
-                                      .tr,
+                                  "I have read and accepted the Terms and Conditions.".tr,
                                   size: 14),
                               value: controller.isTermsAccepted.value,
                               onChanged: (bool? value) {
@@ -212,7 +211,7 @@ class SignupPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Divider(),
                       )),
-                      commonText("Or register using", color: Colors.grey),
+                      commonText("Or register using".tr, color: Colors.grey),
                       const Expanded(
                           child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),

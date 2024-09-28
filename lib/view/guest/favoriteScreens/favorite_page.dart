@@ -189,7 +189,7 @@ class _FavoritePageState extends State<FavoritePage> {
           borderRadius: BorderRadius.circular(50.0),
         ),
         child: commonText(
-          item,
+          item.tr,
           isBold: true,
           color: item == controller.selectedItem.value
               ? Colors.white

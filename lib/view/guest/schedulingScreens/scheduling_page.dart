@@ -89,7 +89,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
                     },
                   ),
                 ),
-                 Text('I agree to share my personal information with this landlord'.tr,style: TextStyle(fontSize: 11),),
+                 Text('I agree to share my information with the landlord.'.tr,style: TextStyle(fontSize: 11),),
               ],
             ),
             const SizedBox(height: 20),
@@ -207,7 +207,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
   }
 
   Widget _buildDateSelection() {
-    List<String> durations = ["1 Week", "1 Month", "3 Months", "1 Year"];
+    List<String> durations = ["1 Month".tr, "3 Months".tr, "6 Months".tr, "1 Year".tr];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,7 +285,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        commonText("Number of Guests", isBold: true, size: 16),
+        commonText("Number of Guests".tr, isBold: true, size: 16),
         const SizedBox(height: 10),
         Obx(() {
           return Row(

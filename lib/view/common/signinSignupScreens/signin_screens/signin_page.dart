@@ -119,15 +119,14 @@ class _SigninPageState extends State<SigninPage> {
               children: [
                 const SizedBox(height: 20.0),
                 commonText(
-                  'Welcome Back!'.tr,
+                  'Welcome!'.tr,
                   size: 24,
                   isBold: true,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8.0),
                 commonText(
-                  'Log In to your Placoo account to explore your dream place to live across the whole world!'
-                      .tr,
+                  'Log in to your account and unlock a seamless renting experience like never before!'.tr,
                   size: 12,
                   color: Colors.grey[600]!,
                   textAlign: TextAlign.center,

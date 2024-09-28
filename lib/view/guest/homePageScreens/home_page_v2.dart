@@ -114,7 +114,7 @@ class _HomePageV2State extends State<HomePageV2> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      commonText("Welcome Back!".tr, size: 12, isBold: false,color: Colors.white),
+                      commonText("Welcome!".tr, size: 12, isBold: false,color: Colors.white),
                       Obx(() {
                         return commonText("${profileController.profileData.value?.name ?? ""}", size: 14, isBold: false,color: Colors.white);
                       }),
@@ -636,7 +636,7 @@ class _HomePageV2State extends State<HomePageV2> {
               width: 2,
             ),
           commonText(
-            item,
+            item.tr,
             isBold: true,
             color: item == controller.selectedItem.value
                 ? Colors.white

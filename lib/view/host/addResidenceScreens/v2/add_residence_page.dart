@@ -179,7 +179,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                           ),
                           SizedBox(height: 10,),
                           commonButton(
-                            "Clear Images",
+                            "Clear Images".tr,
                             onTap: () {
                               controller.images.clear();
                             },
@@ -319,7 +319,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
                                           size: 14, isBold: true),
                                       commonText("Max. 5 files, 10 MB each".tr,
                                           color: Colors.grey),
-                                      commonIconButton("Upload",
+                                      commonIconButton("Upload".tr,
                                           icon: Image.asset(
                                               "assets/icons/export.png"),
                                           color: Colors.black87,
@@ -594,7 +594,7 @@ class _AddResidencePageState extends State<AddResidencePage> {
           ),
           Expanded(
             child: Text(
-              role,
+              role.tr,
               style: TextStyle(
                 color: id == controller.selectedTypeId.value
                     ? Colors.orange
