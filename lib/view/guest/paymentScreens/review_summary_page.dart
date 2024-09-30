@@ -221,7 +221,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                   height: 40,
                 ),
                 widget.data.status.toString() == "pending"?  commonBorderButton(
-                  "Waiting for landlord approve".tr,
+                  "Waiting for landlord approval".tr,
                   onTap: () {
                     paymentRequestController.paymentRequest(
                         bookingId: widget.data.id,
