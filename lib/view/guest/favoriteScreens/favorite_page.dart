@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:real_estate_management/res/components/common_text.dart';
 import 'package:real_estate_management/res/components/layoutManagement/no_data_layout.dart';
+import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
+import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 import 'package:real_estate_management/viewModel/controllers/favoriteControllers/favorite_page_controller.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
@@ -28,7 +31,13 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (LocalStorage.getData(key: AppConstant.token) == null) {
+        Get.off(() => SigninPage(), transition: Transition.fade);
+      }else{
 
+      }
+    });
     Get.delete<FavoritePageController>();
     super.initState();
   }

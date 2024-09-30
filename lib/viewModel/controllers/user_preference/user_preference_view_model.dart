@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreference extends GetxController {
@@ -22,6 +24,7 @@ class UserPreference extends GetxController {
   Future<String> getUser() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? token = sp.getString("token");
+    LocalStorage.saveData(key: AppConstant.token, data: token);
     return token ?? "";
   }
 

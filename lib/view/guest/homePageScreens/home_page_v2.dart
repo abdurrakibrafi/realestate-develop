@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:real_estate_management/res/components/common_text.dart';
+import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
+import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 import 'package:real_estate_management/viewModel/controllers/homeControllers/home_page_controller.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
@@ -53,7 +56,8 @@ class _HomePageV2State extends State<HomePageV2> {
 
   @override
   Widget build(BuildContext context) {
-
+    var token = LocalStorage.getData(key: AppConstant.token);
+    print(token);
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: ()async {
@@ -72,7 +76,34 @@ class _HomePageV2State extends State<HomePageV2> {
               backgroundColor: Color(0xff263238),
               toolbarHeight: 80,
               automaticallyImplyLeading: false,
-              title: Row(
+              title: token == null ?  Row(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColor.whiteColor,width: 2),
+                        color: AppColor.primaryColor
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Guest User".substring(0, 1).toUpperCase() ?? '',
+                        style: TextStyle(color: AppColor.whiteColor),
+                        softWrap: true,  // Enable text wrapping
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 05,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      commonText("Welcome!".tr, size: 12, isBold: false,color: Colors.white),
+                      commonText("Guest User", size: 14, isBold: false,color: Colors.white),
+                    ],
+                  ),
+                ],
+              ) : Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -242,7 +273,12 @@ class _HomePageV2State extends State<HomePageV2> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  _scaffoldKey.currentState!.openDrawer();
+                                  if(LocalStorage.getData(key: AppConstant.token) != null){
+                                    _scaffoldKey.currentState!.openDrawer();
+                                  }else{
+                                    Get.offAll(SigninPage());
+                                  }
+
                                 });
                               },
                               child: Stack(

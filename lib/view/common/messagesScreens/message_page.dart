@@ -5,7 +5,10 @@ import 'package:real_estate_management/res/components/common_text.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
 import 'package:real_estate_management/res/components/layoutManagement/no_data_layout.dart';
+import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
 import 'package:real_estate_management/view/common/messagesScreens/chatting_page.dart';
+import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 
 import '../../../controller/chat/all_friend_controller.dart';
 import '../../../service/socket_service.dart';
@@ -25,6 +28,15 @@ class _MessagePageState extends State<MessagePage> {
 
   @override
   void initState() {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (LocalStorage.getData(key: AppConstant.token) == null) {
+        Get.off(() => SigninPage(), transition: Transition.fade);
+      }else{
+
+      }
+    });
+
     print(socketService.onlineUserList);
     socketService.init();
     super.initState();

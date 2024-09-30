@@ -143,7 +143,7 @@ class FriendController extends GetxController {
 
         isLoading(false);
       } else {
-        throw 'Unable to load all friends data!';
+      //  throw 'Unable to load all friends data!';
       }
     } catch (e) {
       // Schedule the snackbar to show after the current frame is rendered

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:real_estate_management/controller/google%20auth%20controller/google_auth_controller.dart';
+import 'package:real_estate_management/view/guest/guest_root_screen.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:real_estate_management/res/components/common_button.dart';
@@ -102,12 +103,30 @@ class _SigninPageState extends State<SigninPage> {
               "assets/images/bg-image.jpg",
               fit: BoxFit.fill,
             )),
-        const Padding(
+       Positioned(
+         top: 50,
+           right: 20,
+           child: GestureDetector(
+             onTap: (){
+               Get.offAll(() => GuestRootScreen());
+             },
+             child: Container(
+               height: 30,
+               width: 80,
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(12),
+                 color: Colors.white,
+               ),
+               child: Center(child: Text("Skip".tr),),
+             ),
+           )
+       )
+       /* const Padding(
           padding: EdgeInsets.only(top: 50.0),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             // Optional indicator for sign-up steps
           ]),
-        )
+        )*/
       ]),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(16.0),

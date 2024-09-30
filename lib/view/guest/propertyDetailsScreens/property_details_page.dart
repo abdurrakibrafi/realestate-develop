@@ -18,8 +18,10 @@ import 'package:real_estate_management/res/components/common_text.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
 import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
 
 import 'package:real_estate_management/view/common/messagesScreens/message_page.dart';
+import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
 import 'package:real_estate_management/view/guest/propertyDetailsScreens/property_map_location_page.dart';
 
 import 'package:real_estate_management/utils/utils.dart';
@@ -170,7 +172,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                   )),
                                 ),
                               ),
-                              profileController.profileData.value!.role! == "user"
+                              profileController.profileData.value?.role == "user"
                                   ?  Positioned(
                                 top: 30,
                                 right: 28,
@@ -401,7 +403,7 @@ class _ItemDetailsState extends State<ItemDetails>
                             ],
                           ),
                         ),*/
-                        profileController.profileData.value!.role! == "user"
+                        profileController.profileData.value?.role.toString() == "user"
                             ?  ListTile(
                           leading: Container(
                             margin:
@@ -628,7 +630,17 @@ class _ItemDetailsState extends State<ItemDetails>
                                       ),
                                     ),
                                   ),
-                                  profileController.profileData.value!.role! == "user"
+                                  LocalStorage.getData(key: AppConstant.token) == null ?  Expanded(
+                                    child: commonButton(
+                                      height: 40,
+                                      "Login".tr,
+                                      onTap: () {
+                                       Get.offAll(SigninPage());
+                                      },
+                                    ),
+                                  )
+                                      : SizedBox(),
+                                  profileController.profileData.value?.role.toString() == "user"
                                       ?  Expanded(
                                     child: commonButton(
                                       height: 40,

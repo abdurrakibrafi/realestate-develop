@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:real_estate_management/main.dart';
 import 'package:real_estate_management/res/components/common_text.dart';
+import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
 import 'package:real_estate_management/view/common/profileScreens/gettingPaidPages/getting_paid.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
 import 'package:real_estate_management/res/assets/images.dart';
@@ -32,6 +34,19 @@ class _ProfilePageState extends State<ProfilePage> {
   UserPreference userPreference = UserPreference();
   final ProfileController profileController =
       Get.put(ProfileController(), permanent: false);
+
+  @override
+  void initState() {
+    // Defer the navigation to the next frame to avoid calling setState() during build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (LocalStorage.getData(key: AppConstant.token) == null) {
+        Get.off(() => SigninPage(), transition: Transition.fade);
+      }else{
+
+      }
+    });
+    super.initState();
+  }
 
   final WidgetStateProperty<Color?> trackColor =
       WidgetStateProperty.resolveWith<Color?>(
@@ -124,10 +139,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SizedBox(height: 10),
-            commonText(profileController.profileData.value!.name!,
+            commonText("${profileController.profileData.value?.name}",
                 size: 20, color: AppColor.whiteColor, isBold: true),
             commonText(
-              profileController.profileData.value!.email!,
+             "${ profileController.profileData.value?.email}",
               color: AppColor.whiteColor,
             ),
             const SizedBox(
@@ -144,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: commonText(
-                        profileController.profileData.value!.role! == "user"
+                        profileController.profileData.value?.role == "user"
                             ? "Tenant".tr
                             : "Landlord".tr,
                         color: AppColor.primaryColor)),
@@ -160,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Row(
                     children: [
-                      (profileController.profileData.value!.isVerified == true)
+                      (profileController.profileData.value?.isVerified == true)
                           ? const CircleAvatar(
                               backgroundColor: Colors.transparent,
                               radius: 10,
@@ -173,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 3,
                       ),
                       commonText(
-                          profileController.profileData.value!.isVerified ==
+                          profileController.profileData.value?.isVerified ==
                                   true
                               ? "Verified".tr
                               : "Unverified".tr),
@@ -185,7 +200,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 CircleAvatar(
                   backgroundImage: AssetImage(profileController
-                              .profileData.value!.nationality! ==
+                              .profileData.value?.nationality ==
                           "Kuwait"
                       ? 'assets/icons/arb.png'
                       : 'assets/icons/eng.png',
@@ -264,7 +279,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           Visibility(
-            visible: profileController.profileData.value!.role! == "user",
+            visible: profileController.profileData.value?.role == "user",
             child: Column(
               children: [
                 _buildSettingsItem(

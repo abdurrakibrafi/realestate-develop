@@ -52,7 +52,7 @@ class MaintenanceRequestController extends GetxController {
         maintenanceCloseList.addAll(maintenance.value.data!.data.where((e) => e.status.toString() == "cancelled").toList());
         isLoading(false);
       } else {
-        throw 'Unable to load data!';
+      //  throw 'Unable to load data!';
       }
     } catch (e) {
       // kSnackBar(message: e.toString(), bgColor: failedColor);
