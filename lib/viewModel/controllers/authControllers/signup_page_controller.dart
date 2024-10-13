@@ -29,8 +29,8 @@ class SignupPageController extends GetxController {
     );
     nationalityController = Get.put(
       DropdownController([
-        "Kuwait",
-        "USA",
+        "Kuwait".tr,
+        "USA".tr,
       ], selected: "Kuwait"),
       tag: 'nationality',
     );
@@ -89,6 +89,8 @@ class SignupPageController extends GetxController {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_Kuwait.svg/1200px-Flag_of_Kuwait.svg.png',
     '+1':
         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png',
+  /*  '+88':
+    'https://t4.ftcdn.net/jpg/01/04/47/13/360_F_104471360_1xohRUSRjfdGxoaRDtLg2z4ztBHkT21K.jpg',*/
     // Add more country codes as needed
   }.obs;
   var selectedCountryCode = '+965'.obs;
@@ -174,7 +176,8 @@ class SignupPageController extends GetxController {
         "email": emailController.text,
         "gender": gender.value,
         "dateOfBirth": dateOfBirthController.value.text,
-        "phoneNumber": selectedCountryCode.value + phoneNumberController.text,
+        "phoneNumber": phoneNumberController.text,
+        "phoneCode": selectedCountryCode.value,
         "password": passwordController.text,
         "about": aboutYouTextController.text.isEmpty? "": aboutYouTextController.text,
         "nationality": nationalityController.selected.value,
@@ -191,6 +194,10 @@ class SignupPageController extends GetxController {
 
         isLoading.value = false;
         Utils.snackBar("Account Created", "Account Created Successfully!");
+        Get.offAll(() => OtpPage(
+          email: emailController.value.text,
+          isFromAuth: true,
+        ));
         resetFormData();
         // Get.offAll(() => const SigninPage());
         LocalStorage.saveData(
@@ -200,10 +207,7 @@ class SignupPageController extends GetxController {
                 value.data!.user!.sId!, value.data!.user!.role!, "","")
             .then((value2) {
           isLoading.value = false;
-          Get.offAll(() => OtpPage(
-                email: emailController.value.text,
-                isFromAuth: true,
-              ));
+
           Utils.snackBar("OTP", value.message!);
         });
       }).onError((error, stackTrace) {

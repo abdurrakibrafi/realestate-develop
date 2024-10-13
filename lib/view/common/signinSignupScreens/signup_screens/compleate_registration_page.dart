@@ -165,7 +165,7 @@ class _CompleateRegistrationPageState extends State<CompleateRegistrationPage> {
                   widget.role == "Landlord"
                       ? SizedBox()
                       : commonTextfieldWithTitle(
-                          "Job title".tr, controller.jobController,
+                          "Job Title".tr, controller.jobController,
                           hintText: "Enter your job title".tr,
                           keyboardType: TextInputType.visiblePassword),
                   widget.role == "Landlord"
@@ -256,8 +256,7 @@ class _CompleateRegistrationPageState extends State<CompleateRegistrationPage> {
                           return CheckboxListTile(
                             activeColor: AppColor.primaryColor,
                             title: commonText(
-                                "I confirm that the information provided is truthful and accurate"
-                                    .tr,
+                                "I confirm that the information provided is truthful and accurate".tr,
                                 size: 14),
                             value: controller.isKycTermsAccepted.value,
                             onChanged: (bool? value) {

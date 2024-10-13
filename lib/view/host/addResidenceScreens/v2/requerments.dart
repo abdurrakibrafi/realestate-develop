@@ -20,9 +20,9 @@ class _RequermentsPageState extends State<RequermentsPage> {
   final controller = Get.find<AddResidenceController>();
 
   String rentingType = "Long Term";
-  String paymentType = "Per Month";
+  String paymentType = "Per Month".tr;
 
-  String dropdownValue = 'Monthly';
+  String dropdownValue = 'Monthly'.tr;
 
   // List to manage the state of the toggles
 
@@ -121,7 +121,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
                         controller:  controller.rentController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: "450 K.D",
+                          hintText: "450 ${"K.D".tr}",
                           hintStyle: GoogleFonts.poppins(
                             fontSize: 12,
                             color: AppColor.darkGreyColor,
@@ -157,7 +157,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
                             print(dropdownValue);
                           });
                         },
-                        items: <String>['Monthly', 'Per Night']
+                        items: <String>['Monthly'.tr, 'Per Night'.tr]
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -215,7 +215,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
                   controller:  controller.depositeController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    hintText: "150 K.D",
+                    hintText: "150 ${"K.D".tr}",
                     hintStyle: GoogleFonts.poppins(
                       fontSize: 12,
                       color: AppColor.darkGreyColor,
@@ -301,7 +301,7 @@ class _RequermentsPageState extends State<RequermentsPage> {
                       const SizedBox(
                         width: 30,
                       ),
-                      commonText("$dropdownValue",isBold: true,size: 16)
+                      commonText("$dropdownValue".tr,isBold: true,size: 16)
                     ],
                   ),
                 ],

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:real_estate_management/repository/auth_repository/login_repository.dart';
 import 'package:real_estate_management/repository/otp_repository/otp_repository.dart';
 import 'package:real_estate_management/service/local_storage.dart';
+import 'package:real_estate_management/utils/app_constant.dart';
 import 'package:real_estate_management/utils/utils.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/forgetPasswordScreens/otp_page.dart';
 import 'package:real_estate_management/view/guest/guest_root_screen.dart';
@@ -70,6 +71,8 @@ class SigninViewModel extends GetxController {
    //   if (value.data!.user!.verification!.status == true) {
         LocalStorage.saveData(
             key: "userId", data: value.data!.user!.sId.toString());
+        LocalStorage.saveData(
+            key: AppConstant.token, data: value.data!.accessToken.toString());
         LocalStorage.saveData(
             key: "role", data: value.data!.user!.role.toString());
         userPreference

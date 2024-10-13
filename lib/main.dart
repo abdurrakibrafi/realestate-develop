@@ -45,7 +45,7 @@ void main() async {
 Future<String> getLanguage() async {
   SharedPreferences sp = await SharedPreferences.getInstance();
   String? language = sp.getString("language");
-  return language ?? "en";
+  return language == null || language == "" || language == "Null" ? "en" : language;
 }
 
 class MyApp extends StatelessWidget {

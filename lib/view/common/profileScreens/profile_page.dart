@@ -6,6 +6,7 @@ import 'package:real_estate_management/service/local_storage.dart';
 import 'package:real_estate_management/utils/app_constant.dart';
 import 'package:real_estate_management/view/common/profileScreens/gettingPaidPages/getting_paid.dart';
 import 'package:real_estate_management/res/colors/colors.dart';
+import 'package:real_estate_management/view/host/addResidenceScreens/v2/add_residence_page.dart';
 import 'package:real_estate_management/res/assets/images.dart';
 import 'package:real_estate_management/view/common/profileScreens/bookingHistoryPages/my_booking_page.dart';
 import 'package:real_estate_management/view/common/profileScreens/maintenanceRequestPages/maintenance_request_page.dart';
@@ -14,6 +15,9 @@ import 'package:real_estate_management/view/common/profileScreens/personal_info_
 import 'package:real_estate_management/view/common/profileScreens/settings/settings_page.dart';
 import 'package:real_estate_management/view/common/profileScreens/tutorials/tutorial_screen.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signin_screens/signin_page.dart';
+import 'package:real_estate_management/view/host/bookingRequestScreens/reservation_list_page.dart';
+import 'package:real_estate_management/view/host/myResidenceScreens/my_residence_page.dart';
+import 'package:real_estate_management/viewModel/controllers/ResidencesControllers/residences_controller.dart';
 import 'package:real_estate_management/viewModel/controllers/profileControllers/profile_controller.dart';
 import 'package:real_estate_management/viewModel/controllers/user_preference/user_preference_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -114,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 10,
             ),
             ClipOval(
-              child:  profileController.profileData.value?.image == null?
+              child:  profileController.profileData.value?.image == null || profileController.profileData.value?.image == ""?
               Container(
                 width: 120,
                 height: 120,
@@ -250,6 +254,33 @@ class _ProfilePageState extends State<ProfilePage> {
                         builder: (context) => const GettingPaid()),
                   );
                 }),*/
+                _buildSettingsItem("assets/icons/myResidencesIcon.png",
+                    'My Listings'.tr, () {
+                      Get.delete<ResidencesController>();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyResidencePage()),
+                      );
+                    }),
+                _buildSettingsItem("assets/icons/addResidencesIcon.png",
+                    'Add Listings'.tr, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddResidencePage(
+                              isEdit: false,
+                            )),
+                      );
+                    }),
+                _buildSettingsItem("assets/icons/bookingRequestIcon.png",
+                    'New Booking'.tr, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ReservationListPage()),
+                      );
+                    }),
                 _buildSettingsItem("assets/icons/profile/request.png",
                     'Maintenance Request'.tr, () {
                   Navigator.push(
@@ -360,6 +391,7 @@ class _ProfilePageState extends State<ProfilePage> {
 /*              SharedPreferences sp = await SharedPreferences.getInstance();
               String? language =  sp.getString("language");
               sp.setString("language", language.toString());*/
+            LocalStorage.removeData(key: AppConstant.token);
               //resetApp();
               Get.offAll(const SigninPage());
             });

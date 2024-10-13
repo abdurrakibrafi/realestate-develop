@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:real_estate_management/controller/google%20auth%20controller/google_auth_controller.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signin_signup_root_page.dart';
+import 'package:real_estate_management/view/common/terms_conditions/terms_conditions_view.dart';
 import 'package:real_estate_management/viewModel/controllers/authControllers/signup_page_controller.dart';
 import 'package:real_estate_management/view/common/signinSignupScreens/signup_screens/compleate_registration_page.dart';
 import 'package:real_estate_management/res/components/common_button.dart';
@@ -153,18 +154,46 @@ class SignupPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
-                        child: Obx(() => CheckboxListTile(
-                              activeColor: AppColor.primaryColor,
-                              title: commonText(
-                                  "I have read and accepted the Terms and Conditions.".tr,
-                                  size: 14),
-                              value: controller.isTermsAccepted.value,
-                              onChanged: (bool? value) {
-                                controller.isTermsAccepted.value = value!;
+                        child: Obx(
+                              () => CheckboxListTile(
+                            activeColor: AppColor.primaryColor,
+                            title: GestureDetector(
+                              onTap: () {
+                                Get.to(() => TermsConditionsView());
                               },
-                              controlAffinity: ListTileControlAffinity.leading,
-                            )),
-                      ),
+                              child: RichText(
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black, // Default text color
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: "I have read and accepted the".tr,
+                                    ),
+                                    TextSpan(
+                                      text: "Terms and Conditions.".tr,
+                                      style: TextStyle(
+                                        color: AppColor.primaryColor
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: ".",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            value: controller.isTermsAccepted.value,
+                            onChanged: (bool? value) {
+                              controller.isTermsAccepted.value = value!;
+                            },
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                        ),
+                      )
+
+
                     ],
                   ),
                   const SizedBox(

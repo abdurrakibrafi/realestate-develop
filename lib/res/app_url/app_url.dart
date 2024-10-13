@@ -9,8 +9,14 @@ class AppUrl {
   static const socketUrl = "http://159.223.184.53:9001";
 */
 
-  static const String baseUrl = "http://estate.mamnon.de/api/v1";
-  static const socketUrl = "http://159.223.184.53:9001";
+ /* static const String baseUrl = "http://estate.mamnon.de/api/v1";
+  static const socketUrl = "http://159.223.184.53:9001";  */
+
+  static const String baseUrl = "https://api.mostaajer.com/api/v1";
+  static const socketUrl = "https://socket.mostaajer.com";
+
+  /*static const String baseUrl = "http://115.127.156.14:9005/api/v1";
+  static const socketUrl = "http://159.223.184.53:9001";*/
 
   static Future<String> getUserId() async {
     UserPreference userPreference = UserPreference();
@@ -89,6 +95,7 @@ class AppUrl {
 
   static const String bookResidenceUrl = "$baseUrl/bookings";
   static const String myBookResidenceUrl = "$baseUrl/bookings/my-booking?sort=-createdAt&limit=999999999";
+  static const String contents = "$baseUrl/contents";
   static  String newBooking({userId}) => "$baseUrl/bookings?author=$userId";
 
   static const String myBookingResidenceUrl = "$baseUrl/bookings/my-booking";

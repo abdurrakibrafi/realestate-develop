@@ -197,7 +197,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                commonText("A contract fee is required to confirm your booking. All other payments must be made directly to the landlord. We do not handle rent collection.",textAlign: TextAlign.center,color: Color(0xff757575)),
+                commonText("A contract fee is required to confirm your booking. All other payments must be made directly to the landlord. We do not handle rent collection.".tr,textAlign: TextAlign.center,color: Color(0xff757575)),
                 const SizedBox(
                   height: 30,
                 ),
@@ -211,7 +211,7 @@ class _ReviewSummaryPageState extends State<ReviewSummaryPage> {
                       children: [
                         commonText("Amount Payable".tr,
                             color: AppColor.blackColor, isBold: true),
-                        commonText("10.000 ${"K.D".tr}",
+                        commonText("10.000",
                             color: AppColor.primaryColor, isBold: true),
                       ],
                     ),

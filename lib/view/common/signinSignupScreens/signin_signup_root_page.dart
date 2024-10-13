@@ -25,7 +25,7 @@ class _LoginChooserScreenState extends State<LoginChooserScreen> {
 
   @override
   void initState() {
-    languageData = "en";
+ //   languageData = "en";
     getLanguageData();
     super.initState();
   }
@@ -232,7 +232,7 @@ class _LoginChooserScreenState extends State<LoginChooserScreen> {
               ),
             ),
             Align(
-              alignment: languageData == "en"? Alignment.topRight : Alignment.topLeft,
+              alignment: languageData == "en"? Alignment.topRight : languageData == "ar"? Alignment.topLeft : Alignment.topRight,
               child: Radio<int>(
                 value: value,
                 groupValue: groupValue,

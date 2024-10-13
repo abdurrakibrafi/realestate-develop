@@ -44,10 +44,13 @@ class _HomePageV2State extends State<HomePageV2> {
   UserPreference preference = UserPreference();
   TextEditingController searchController = TextEditingController();
   String categoryId = "";
+      var token;
 
 
   @override
   void initState() {
+     token = LocalStorage.getData(key: AppConstant.token);
+    print(token);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       profileController.fetchData();
     });
@@ -56,8 +59,7 @@ class _HomePageV2State extends State<HomePageV2> {
 
   @override
   Widget build(BuildContext context) {
-    var token = LocalStorage.getData(key: AppConstant.token);
-    print(token);
+
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: ()async {
@@ -103,7 +105,7 @@ class _HomePageV2State extends State<HomePageV2> {
                     ],
                   ),
                 ],
-              ) : Row(
+              ) : Obx(() => Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -114,8 +116,8 @@ class _HomePageV2State extends State<HomePageV2> {
                             const ProfilePage(isHost: false, isGuest: true)),
                       );
                     },
-                    child:   Obx(() => ClipOval(
-                        child: profileController.profileData.value?.image == null?
+                    child:   ClipOval(
+                        child: profileController.profileData.value?.image == null || profileController.profileData.value?.image == ""?
                         Container(
                           height: 40,
                           width: 40,
@@ -133,13 +135,13 @@ class _HomePageV2State extends State<HomePageV2> {
                           ),
                         )
                             : Image.network(
-                        "${profileController.profileData.value?.image}",
+                          "${profileController.profileData.value?.image}",
                           fit: BoxFit.cover,
                           width: 40,
                           height: 40,
 
                         )
-                    ),)
+                    ),
                   ),
                   SizedBox(width: 05,),
                   Column(
@@ -152,7 +154,7 @@ class _HomePageV2State extends State<HomePageV2> {
                     ],
                   ),
                 ],
-              ),
+              ),),
               actions: [
                 GestureDetector(
                   onTap: () {
@@ -272,14 +274,19 @@ class _HomePageV2State extends State<HomePageV2> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                setState(() {
+                            /*    setState(() {
                                   if(LocalStorage.getData(key: AppConstant.token) != null){
                                     _scaffoldKey.currentState!.openDrawer();
                                   }else{
                                     Get.offAll(SigninPage());
                                   }
 
-                                });
+                                });*/
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchPage()),
+                                );
                               },
                               child: Stack(
                                 clipBehavior: Clip.none,
@@ -291,14 +298,14 @@ class _HomePageV2State extends State<HomePageV2> {
                                         color: AppColor.searchBlack),
                                     child: const ImageIcon(
                                       color: AppColor.whiteColor,
-                                      AssetImage("assets/icons/common/more.png"),
+                                      AssetImage("assets/icons/filterIcon2.png"),
                                       size: 24.0,
                                     ),
                                   ),
-                                  Positioned(
+                              /*    Positioned(
                                       top: 8,
                                       right: 8,
-                                      child: CircleAvatar(radius: 6,backgroundColor: AppColor.primaryColor,))
+                                      child: CircleAvatar(radius: 6,backgroundColor: AppColor.primaryColor,))*/
                                 ],
                               ),
                             ),

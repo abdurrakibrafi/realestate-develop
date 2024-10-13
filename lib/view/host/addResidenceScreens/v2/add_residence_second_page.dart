@@ -128,7 +128,7 @@ class AddResidenceSecondPage extends StatelessWidget {
               commonTextfieldWithTitle(
                 "",
                 controller.houseController,
-                hintText: "Building Number/No.",
+                hintText: "Building Name/No.".tr,
               ),
               Row(
                 children: [
@@ -136,7 +136,7 @@ class AddResidenceSecondPage extends StatelessWidget {
                     child: commonTextfieldWithTitle(
                       "",
                       controller.apartmentController,
-                      hintText: "Apartment No.",
+                      hintText: "Apartment No.".tr,
                     ),
                   ),
                   const SizedBox(
@@ -146,7 +146,7 @@ class AddResidenceSecondPage extends StatelessWidget {
                     child: commonTextfieldWithTitle(
                       "",
                       controller.floorController,
-                      hintText: "Floor",
+                      hintText: "Floor".tr,
                     ),
                   )
                 ],
@@ -154,7 +154,7 @@ class AddResidenceSecondPage extends StatelessWidget {
               commonTextfieldWithTitle(
                 "",
                 controller.streetController,
-                hintText: "Street Name/Number",
+                hintText: "Street Name/Number".tr,
               ),
               Row(
                 children: [
@@ -162,7 +162,7 @@ class AddResidenceSecondPage extends StatelessWidget {
                     child: commonTextfieldWithTitle(
                       "",
                       controller.blockController,
-                      hintText: "Block No.",
+                      hintText: "Block No.".tr,
                     ),
                   ),
                   const SizedBox(
@@ -172,7 +172,7 @@ class AddResidenceSecondPage extends StatelessWidget {
                     child: commonTextfieldWithTitle(
                       "",
                       controller.avenueController,
-                      hintText: "Avenue (optional)",
+                      hintText: "Avenue (optional)".tr,
                     ),
                   )
                 ],
@@ -180,7 +180,7 @@ class AddResidenceSecondPage extends StatelessWidget {
               commonTextfieldWithTitle(
                 "",
                 controller.aditionalController,
-                hintText: "Additional Directions",
+                hintText: "Additional Directions".tr,
               ),
               const SizedBox(height: 24),
               Obx(() {
