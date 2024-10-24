@@ -469,7 +469,7 @@ class _HomePageV2State extends State<HomePageV2> {
                                                               .networkImage,
                                                           fit: BoxFit.cover,
                                                           width:
-                                                          double.infinity,
+                                                          220,
                                                         );
                                                       })),
                                               // Positioned(
@@ -724,12 +724,15 @@ class _HomePageV2State extends State<HomePageV2> {
                               DummyImage.networkImage
                               : DummyImage.networkImage,
                           fit: BoxFit.cover,
+
                           errorBuilder: (BuildContext context, Object exception,
                               StackTrace? stackTrace) {
                             return Image.network(
                               DummyImage.networkImage,
                               fit: BoxFit.cover,
-                              width: double.infinity,
+                             // width: double.infinity,
+                              height: 80,
+                              width: 90, // Adjust as needed
                             );
                           },
                         ),
